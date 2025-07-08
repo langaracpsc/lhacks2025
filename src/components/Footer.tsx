@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import { AnimatedSection, StaggeredContainer, StaggeredItem } from '@/components/motion/AnimatedSection'
 import { Card, CardContent } from '@/components/ui/card'
-import { Github, Twitter, Instagram, Mail, MapPin } from 'lucide-react'
+import { Instagram } from 'lucide-react'
 
 export const Footer = () => {
   const socialLinks = [
@@ -106,7 +106,7 @@ export const Footer = () => {
               viewport={{ once: true }}
               className="flex space-x-6"
             >
-              {socialLinks.map((link, index) => (
+              {socialLinks.map((link) => (
                 <motion.a
                   key={link.label}
                   href={link.href}

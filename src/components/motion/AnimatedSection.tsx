@@ -1,45 +1,46 @@
 import { motion } from 'motion/react'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 interface AnimatedSectionProps {
   children: ReactNode
-  className?: string
   delay?: number
   direction?: 'up' | 'down' | 'left' | 'right'
-  duration?: number
+  className?: string
 }
 
 export const AnimatedSection = ({ 
   children, 
-  className = '', 
   delay = 0, 
   direction = 'up',
-  duration = 0.6
+  className = '' 
 }: AnimatedSectionProps) => {
-  const directions = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { y: 0, x: 40 },
-    right: { y: 0, x: -40 }
+  const getInitialPosition = () => {
+    switch (direction) {
+      case 'up': return { y: 50, x: 0 }
+      case 'down': return { y: -50, x: 0 }
+      case 'left': return { x: 50, y: 0 }
+      case 'right': return { x: -50, y: 0 }
+      default: return { y: 50, x: 0 }
+    }
   }
 
   return (
     <motion.div
       initial={{ 
         opacity: 0, 
-        ...directions[direction]
+        ...getInitialPosition() 
       }}
       whileInView={{ 
         opacity: 1, 
-        y: 0, 
-        x: 0 
+        x: 0, 
+        y: 0 
       }}
       transition={{ 
-        duration,
+        duration: 0.6, 
         delay,
-        ease: [0.25, 0.25, 0.25, 0.75]
+        ease: 'easeOut' 
       }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, margin: '-50px' }}
       className={className}
     >
       {children}
@@ -47,23 +48,25 @@ export const AnimatedSection = ({
   )
 }
 
+interface StaggeredContainerProps {
+  children: ReactNode
+  staggerDelay?: number
+  className?: string
+}
+
 export const StaggeredContainer = ({ 
   children, 
-  className = '',
-  staggerDelay = 0.1
-}: {
-  children: ReactNode
-  className?: string
-  staggerDelay?: number
-}) => {
+  staggerDelay = 0.1,
+  className = '' 
+}: StaggeredContainerProps) => {
   return (
     <motion.div
       initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.3 }}
+      whileInView="visible"
+      viewport={{ once: true, margin: '-50px' }}
       variants={{
         hidden: {},
-        show: {
+        visible: {
           transition: {
             staggerChildren: staggerDelay
           }
@@ -76,20 +79,31 @@ export const StaggeredContainer = ({
   )
 }
 
-export const StaggeredItem = ({ 
-  children, 
-  className = '' 
-}: { 
+interface StaggeredItemProps {
   children: ReactNode
-  className?: string 
-}) => {
+  className?: string
+}
+
+export const StaggeredItem = ({ 
+  children,
+  className = '' 
+}: StaggeredItemProps) => {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 }
+        hidden: { 
+          opacity: 0, 
+          y: 30 
+        },
+        visible: { 
+          opacity: 1, 
+          y: 0,
+          transition: {
+            duration: 0.6,
+            ease: 'easeOut'
+          }
+        }
       }}
-      transition={{ duration: 0.5 }}
       className={className}
     >
       {children}

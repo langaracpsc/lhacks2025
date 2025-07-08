@@ -7,46 +7,46 @@ import { Code, Palette, Brain, Zap, Globe, Shield, ArrowRight, ArrowLeft } from 
 export const ProjectsSection = () => {
   const projectCategories = [
     {
-      icon: Code,
       title: "Web Development",
-      description: "Full-stack applications, APIs, and web platforms",
-      color: "bg-lh-accent/20 text-lh-accent",
-      projects: ["E-commerce Platform", "Social Media App", "Portfolio Website"]
+      icon: Code,
+      description: "Build responsive web applications using modern frameworks and technologies.",
+      color: "bg-lh-primary/20",
+      iconColor: "text-lh-primary"
     },
     {
-      icon: Brain,
       title: "AI & Machine Learning",
-      description: "Intelligent systems, data analysis, and automation",
-      color: "bg-lh-primary/20 text-lh-primary",
-      projects: ["Chatbot Assistant", "Image Recognition", "Predictive Analytics"]
+      icon: Brain,
+      description: "Explore artificial intelligence and machine learning solutions for real-world problems.",
+      color: "bg-lh-accent/20",
+      iconColor: "text-lh-accent"
     },
     {
-      icon: Globe,
       title: "Social Impact",
-      description: "Solutions for community and environmental challenges",
-      color: "bg-lh-accent/20 text-lh-accent",
-      projects: ["Climate Tracker", "Community Helper", "Education Tool"]
+      icon: Globe,
+      description: "Create technology solutions that address social and environmental challenges.",
+      color: "bg-lh-primary/20",
+      iconColor: "text-lh-primary"
     },
     {
+      title: "Creative Technology",
       icon: Palette,
-      title: "Creative Tech",
-      description: "Art, design, and interactive experiences",
-      color: "bg-lh-primary/20 text-lh-primary",
-      projects: ["Digital Art Gallery", "Music Visualizer", "VR Experience"]
+      description: "Combine creativity with technology to build innovative digital experiences.",
+      color: "bg-lh-accent/20",
+      iconColor: "text-lh-accent"
     },
     {
-      icon: Shield,
       title: "Cybersecurity",
-      description: "Security tools, privacy solutions, and safe computing",
-      color: "bg-lh-accent/20 text-lh-accent",
-      projects: ["Password Manager", "Network Scanner", "Privacy Shield"]
+      icon: Shield,
+      description: "Develop secure systems and explore cybersecurity challenges and solutions.",
+      color: "bg-lh-primary/20",
+      iconColor: "text-lh-primary"
     },
     {
+      title: "Innovation Track",
       icon: Zap,
-      title: "Innovation",
-      description: "Experimental ideas and cutting-edge technology",
-      color: "bg-lh-primary/20 text-lh-primary",
-      projects: ["IoT Dashboard", "Blockchain App", "AR Tool"]
+      description: "Open category for groundbreaking ideas and experimental technologies.",
+      color: "bg-lh-accent/20",
+      iconColor: "text-lh-accent"
     }
   ]
 
@@ -100,52 +100,47 @@ export const ProjectsSection = () => {
 
         {/* Project Categories Grid */}
         <StaggeredContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projectCategories.map((category, index) => (
+          {projectCategories.map((category) => (
             <StaggeredItem key={category.title}>
               <motion.div
                 whileHover={{ 
                   scale: 1.05,
-                  transition: { duration: 0.2 }
+                  rotateY: 5,
+                  transition: { duration: 0.3 }
                 }}
                 whileTap={{ scale: 0.98 }}
+                className={`p-8 rounded-xl ${category.color} backdrop-blur-sm border border-lh-medium/20 h-full cursor-pointer group`}
               >
-                <Card className="bg-lh-medium/20 border-lh-medium/30 backdrop-blur-sm shadow-lh-card h-full group cursor-pointer">
-                  <CardContent className="p-8">
-                    {/* Icon */}
-                    <motion.div
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                      className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 ${category.color}`}
-                    >
-                      <category.icon className="w-8 h-8" />
-                    </motion.div>
+                {/* Icon */}
+                <motion.div
+                  initial={{ scale: 1 }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    rotate: 360,
+                    transition: { duration: 0.6 }
+                  }}
+                  className="mb-6"
+                >
+                  <category.icon 
+                    className={`w-12 h-12 ${category.iconColor} group-hover:drop-shadow-lg transition-all duration-300`}
+                  />
+                </motion.div>
 
-                    {/* Title & Description */}
-                    <h3 className="text-xl font-bold text-lh-text-light mb-4 group-hover:text-lh-accent transition-colors">
-                      {category.title}
-                    </h3>
-                    <p className="text-lh-text-light/60 mb-6 leading-relaxed">
-                      {category.description}
-                    </p>
+                {/* Content */}
+                <h3 className="text-xl font-bold text-lh-text-light mb-3 group-hover:text-lh-accent transition-colors duration-300 font-helvetica">
+                  {category.title}
+                </h3>
+                <p className="text-lh-text-light/70 font-spline leading-relaxed">
+                  {category.description}
+                </p>
 
-                    {/* Example Projects */}
-                    <div className="space-y-2">
-                      {category.projects.map((project, projectIndex) => (
-                        <motion.div
-                          key={project}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: projectIndex * 0.1 }}
-                          viewport={{ once: true }}
-                          className="flex items-center space-x-2"
-                        >
-                          <div className="w-1 h-1 bg-lh-accent rounded-full"></div>
-                          <span className="text-lh-text-light/50 text-sm">{project}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                {/* Hover Effect */}
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                  className="h-0.5 bg-gradient-to-r from-lh-primary to-lh-accent mt-4"
+                />
               </motion.div>
             </StaggeredItem>
           ))}
@@ -172,8 +167,7 @@ export const ProjectsSection = () => {
                 viewport={{ once: true }}
                 className="text-lh-text-light/80 mb-8 max-w-2xl mx-auto"
               >
-                Join hundreds of developers, designers, and innovators for 48 hours of creativity, 
-                learning, and building the future. Your next great idea starts here!
+                Join fellow innovators and create projects that make a difference. Choose your category or think outside the box with our Innovation Track.
               </motion.p>
 
               <motion.div

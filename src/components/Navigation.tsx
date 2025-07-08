@@ -1,7 +1,5 @@
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
