@@ -5,7 +5,6 @@ import { Github, Twitter, Instagram, Mail, MapPin } from 'lucide-react'
 
 export const Footer = () => {
   const socialLinks = [
-    { icon: Mail, href: "mailto:contact@langarahacks.com", label: "Email" },
     { icon: Instagram, href: "#", label: "Instagram" }
   ]
 

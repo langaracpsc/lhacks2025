@@ -52,5 +52,4 @@ src/
 
 ## Contact
 
-- Email: contact@langarahacks.com
 - Instagram: @langaracpsc
