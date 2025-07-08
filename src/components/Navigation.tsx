@@ -43,7 +43,7 @@ export const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button - Right aligned */}
-          <div className="md:hidden ml-auto">
+          <div className="md:hidden ml-auto bg-transparent">
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -51,45 +51,36 @@ export const Navigation = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-[68px] h-[54px] rounded-md flex items-center justify-center transition-colors relative"
+              className="w-12 h-12 flex items-center  justify-center transition-colors relative rounded-md"
               style={{
-                backgroundColor: 'rgb(245, 245, 245)'
+                backgroundColor: 'transparent'
               }}
             >
-              {/* Hamburger Menu Lines matching Figma specs */}
-              <div className="relative w-[57px] h-[40px]">
+              {/* Simple white hamburger lines like in the image */}
+              <div className="relative w-6 h-4 ">
                 <motion.div
-                  className="absolute w-[57px] h-[3px] rounded-[1.5px]"
-                  style={{
-                    backgroundColor: 'rgb(0, 111, 253)',
-                    top: '6.75px'
-                  }}
+                  className="absolute w-6 h-0.5 bg-white rounded-full"
+                  style={{ top: '0px' }}
                   animate={{
                     rotate: isMenuOpen ? 45 : 0,
-                    y: isMenuOpen ? 13.5 : 0
+                    y: isMenuOpen ? 6 : 0
                   }}
                   transition={{ duration: 0.3 }}
                 />
                 <motion.div
-                  className="absolute w-[57px] h-[3px] rounded-[1.5px]"
-                  style={{
-                    backgroundColor: 'rgb(0, 111, 253)',
-                    top: '20.25px'
-                  }}
+                  className="absolute w-6 h-0.5 bg-white rounded-full"
+                  style={{ top: '6px' }}
                   animate={{
                     opacity: isMenuOpen ? 0 : 1
                   }}
                   transition={{ duration: 0.3 }}
                 />
                 <motion.div
-                  className="absolute w-[57px] h-[3px] rounded-[1.5px]"
-                  style={{
-                    backgroundColor: 'rgb(0, 111, 253)',
-                    top: '33.75px'
-                  }}
+                  className="absolute w-6 h-0.5 bg-white rounded-full"
+                  style={{ top: '12px' }}
                   animate={{
                     rotate: isMenuOpen ? -45 : 0,
-                    y: isMenuOpen ? -13.5 : 0
+                    y: isMenuOpen ? -6 : 0
                   }}
                   transition={{ duration: 0.3 }}
                 />
@@ -98,12 +89,12 @@ export const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu with full screen background */}
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ 
             opacity: isMenuOpen ? 1 : 0,
-            height: isMenuOpen ? 'auto' : 0
+            height: isMenuOpen ? '100vh' : 0
           }}
           transition={{ duration: 0.3 }}
           className="md:hidden overflow-hidden"
@@ -131,6 +122,18 @@ export const Navigation = () => {
             ))}
           </div>
         </motion.div>
+
+      {/* Full screen background overlay when menu is open */}
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed  z-20 h-screen inset-0  bg-lh-dark/95 backdrop-blur-sm z-30 md:hidden"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
       </div>
     </motion.nav>
   )

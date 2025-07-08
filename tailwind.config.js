@@ -57,15 +57,15 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        // Primary fonts from Figma design
-        'spline': ['Spline Sans', 'Inter', 'system-ui', 'sans-serif'], // Primary font (28 uses)
-        'spline-semibold': ['Spline Sans', 'Inter', 'system-ui', 'sans-serif'], // Spline Sans SemiBold (7 uses)
+        // Primary fonts - Helvetica Neue as primary
+        'helvetica': ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'], // Primary font
+        'spline': ['Spline Sans', 'Inter', 'system-ui', 'sans-serif'], // Secondary font
+        'spline-semibold': ['Spline Sans', 'Inter', 'system-ui', 'sans-serif'], // Spline Sans SemiBold
         'sf-pro': ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'], // SF Pro with system fallbacks
         'inter': ['Inter', 'system-ui', 'sans-serif'], // Inter for special elements
-        'helvetica': ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'], // Helvetica Neue for headings
         
-        // Default fallback
-        'sans': ['Spline Sans', 'Inter', 'system-ui', 'sans-serif'],
+        // Default fallback - now Helvetica Neue
+        'sans': ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       },
       fontSize: {
         'hero': ['7.3rem', { lineHeight: '1.1', fontWeight: '700' }], // 117px from Figma

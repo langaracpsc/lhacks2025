@@ -66,17 +66,17 @@ export const ProjectsSection = () => {
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-7xl mx-auto">
           <Carousel
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
             }}
             className="w-full"
           >
-            <CarouselContent>
+            <CarouselContent className="-ml-2 md:-ml-4">
               {projects.map((project, index) => (
-                <CarouselItem key={project.id}>
+                <CarouselItem key={project.id} className="pl-2 md:pl-4 md:basis-4/5">
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -203,19 +203,45 @@ export const ProjectsSection = () => {
             
             {/* Custom Navigation Buttons */}
             <CarouselPrevious 
-              className="w-20 h-20 -left-12 border-0"
+              className="w-12 h-12 -left-6 border-0"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
                 color: 'white'
               }}
-            />
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="15,18 9,12 15,6"></polyline>
+              </svg>
+            </CarouselPrevious>
             <CarouselNext 
-              className="w-20 h-20 -right-12 border-0"
+              className="w-12 h-12 -right-6 border-0"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
                 color: 'white'
               }}
-            />
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+            </CarouselNext>
           </Carousel>
         </div>
       </div>
