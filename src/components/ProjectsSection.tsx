@@ -51,22 +51,22 @@ export const ProjectsSection = () => {
   ]
 
   return (
-    <section id="projects" className="py-20 bg-lh-dark relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="projects" className="py-20 bg-lh-dark relative overflow-hidden w-full">
+      <div className="w-full flex flex-col items-center justify-center">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 px-4"
         >
           <h2 className="text-[80px] font-bold text-white mb-4">PROJECTS</h2>
           <p className="text-xl text-yellow-400">lorem ipsum lorem ipsum lorem</p>
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative w-full">
           <Carousel
             opts={{
               align: "center",
@@ -203,7 +203,7 @@ export const ProjectsSection = () => {
             
             {/* Custom Navigation Buttons */}
             <CarouselPrevious 
-              className="w-12 h-12 -left-6 border-0"
+              className="w-12 h-12 left-4 border-0 cursor-pointer"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
                 color: 'white'
@@ -223,7 +223,7 @@ export const ProjectsSection = () => {
               </svg>
             </CarouselPrevious>
             <CarouselNext 
-              className="w-12 h-12 -right-6 border-0"
+              className="w-12 h-12 right-4 border-0 cursor-pointer"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
                 color: 'white'

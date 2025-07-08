@@ -55,28 +55,28 @@ export const Footer = () => {
 
   return (
     <footer className="bg-lh-dark py-20">
-      <div className="container mx-auto px-4">
+      <div className="w-full">
         {/* Main Title */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-[60px] font-bold text-white text-center mb-16 leading-tight"
+          className="text-[60px] font-bold text-white text-center mb-16 leading-tight px-4"
         >
           LANGARA HACKS 2025<br />
           HACKATHON COMMITTEE
         </motion.h2>
 
         {/* Team Members Continuous Scroll */}
-        <div className="relative mb-16 overflow-hidden">
+        <div className="relative mb-16 overflow-hidden w-full">
           <motion.div
             className="flex gap-4 md:gap-6"
             animate={{
               x: [0, -100 + '%']
             }}
             transition={{
-              duration: 40,
+              duration: 25,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -114,7 +114,7 @@ export const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="flex justify-between items-center"
+          className="flex justify-between items-center px-4"
         >
           {/* Social Handle */}
           <span className="text-white text-sm">

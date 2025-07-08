@@ -39,6 +39,7 @@ export const LocationSection = () => {
                 color: 'rgb(148, 15, 24)'
               }}
               onMouseEnter={(e) => {
+                e.currentTarget.style.cursor = 'pointer'
                 e.currentTarget.style.backgroundColor = 'rgb(191, 18, 30)'
                 e.currentTarget.style.color = 'white'
               }}

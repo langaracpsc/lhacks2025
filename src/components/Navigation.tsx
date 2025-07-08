@@ -17,7 +17,7 @@ export const Navigation = () => {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 bg-lh-dark/95 backdrop-blur-sm"
     >
-      <div className="container mx-auto px-4">
+      <div className="container px-4">
         <div className="flex items-center justify-between h-20">
           {/* Desktop Navigation - Left aligned */}
           <div className="hidden md:flex items-center space-x-12">
@@ -29,15 +29,26 @@ export const Navigation = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.3 }}
                 whileHover={{ 
-                  scale: 1.05
+                  scale: 1.1,
+                  y: -2,
+                  color: 'rgba(245, 245, 245, 1)',
+                  textShadow: '0px 0px 8px rgba(245, 245, 245, 0.5)'
                 }}
-                className="text-[18px] font-bold transition-colors duration-300"
+                whileTap={{ scale: 0.95 }}
+                className="text-[18px] font-bold transition-all duration-300 relative cursor-pointer"
                 style={{
                   color: 'rgba(245, 245, 245, 0.59)',
                   fontFamily: 'system-ui, -apple-system, sans-serif'
                 }}
               >
                 {item.label}
+                {/* Animated underline */}
+                <motion.div
+                  className="absolute bottom-0 left-0 h-0.5 bg-white"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                />
               </motion.a>
             ))}
           </div>
@@ -110,9 +121,15 @@ export const Navigation = () => {
                   x: isMenuOpen ? 0 : -20
                 }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ x: 10 }}
+                whileHover={{ 
+                  x: 15,
+                  scale: 1.05,
+                  color: 'rgba(245, 245, 245, 1)',
+                  textShadow: '0px 0px 8px rgba(245, 245, 245, 0.5)'
+                }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsMenuOpen(false)}
-                className="block text-[24px] font-bold py-2 transition-colors duration-300"
+                className="block text-[24px] font-bold py-2 transition-all duration-300 cursor-pointer"
                 style={{
                   color: 'rgba(245, 245, 245, 0.59)'
                 }}

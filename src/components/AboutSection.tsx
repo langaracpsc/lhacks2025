@@ -32,7 +32,7 @@ export const AboutSection = () => {
           {/* More Info Button */}
           <Button 
             variant="outline"
-            className="border-[#6F0510] text-[#6F0510] bg-transparent hover:bg-[#6F0510] hover:text-white rounded-full px-8 py-3 text-lg font-medium transition-all"
+            className="border-[#6F0510] cursor-pointer text-[#6F0510] bg-transparent hover:bg-[#6F0510] hover:text-white rounded-full px-8 py-3 text-lg font-medium transition-all"
           >
             More info
             <ArrowUpRight className="ml-2 h-5 w-5" />
