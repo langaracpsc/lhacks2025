@@ -1,70 +1,180 @@
+@import '@fontsource/spline-sans/400.css';
+@import '@fontsource/spline-sans/600.css';
+@import '@fontsource/inter/400.css';
+
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Smooth scrolling for navigation */
+html {
+  scroll-behavior: smooth;
+}
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Spline Sans', Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #141414;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  
+  /* Langara Hacks Design System - EXACT Figma colors */
+  --radius: 0.875rem; /* 14px - matches Figma's 13px rounded corners */
+  
+  /* Using exact RGB values from Figma converted to HSL */
+  --background: 20 20 20; /* #141414 - RGB(20, 20, 20) */
+  --foreground: 245 245 245; /* #F5F5F5 - Light gray text */
+  --card: 47 46 46; /* #2F2E2E - RGB(47, 46, 46) */
+  --card-foreground: 245 245 245; /* #F5F5F5 - Light text on cards */
+  --popover: 47 46 46; /* #2F2E2E */
+  --popover-foreground: 245 245 245; /* #F5F5F5 */
+  --primary: 356 87% 23%; /* #6E080F - RGB(110, 8, 15) converted to HSL */
+  --primary-foreground: 245 245 245; /* #F5F5F5 - Light text on primary */
+  --secondary: 47 46 46; /* #2F2E2E - Medium gray */
+  --secondary-foreground: 245 245 245; /* #F5F5F5 */
+  --muted: 47 46 46; /* #2F2E2E */
+  --muted-foreground: 220 220 218; /* #DCDCDA - Light beige */
+  --accent: 214 100% 50%; /* #006FFD - RGB(0, 111, 253) converted to HSL */
+  --accent-foreground: 245 245 245; /* #F5F5F5 */
+  --destructive: 0 84% 60%; /* Red for destructive actions */
+  --destructive-foreground: 245 245 245; /* #F5F5F5 */
+  --border: 47 46 46; /* #2F2E2E */
+  --input: 47 46 46; /* #2F2E2E */
+  --ring: 356 87% 23%; /* #6E080F - Primary red for focus rings */
+  
+  /* Chart colors - using Langara Hacks palette */
+  --chart-1: 356 87% 23%; /* #6E080F - Primary red */
+  --chart-2: 214 100% 50%; /* #006FFD - Blue accent */
+  --chart-3: 220 220 218; /* #DCDCDA - Light beige */
+  --chart-4: 47 46 46; /* #2F2E2E - Medium gray */
+  --chart-5: 20 20 20; /* #141414 - Dark background */
+  
+  /* Sidebar colors */
+  --sidebar: 47 46 46; /* #2F2E2E */
+  --sidebar-foreground: 245 245 245; /* #F5F5F5 */
+  --sidebar-primary: 356 87% 23%; /* #6E080F */
+  --sidebar-primary-foreground: 245 245 245; /* #F5F5F5 */
+  --sidebar-accent: 214 100% 50%; /* #006FFD */
+  --sidebar-accent-foreground: 245 245 245; /* #F5F5F5 */
+  --sidebar-border: 47 46 46; /* #2F2E2E */
+  --sidebar-ring: 356 87% 23%; /* #6E080F */
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #141414; /* Ensure dark background */
+  color: #F5F5F5; /* Light text */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Dark theme adjustments - keeping the same color scheme as it's already dark */
+.dark {
+  --background: 20 20 20; /* #141414 */
+  --foreground: 245 245 245; /* #F5F5F5 */
+  --card: 47 46 46; /* #2F2E2E */
+  --card-foreground: 245 245 245; /* #F5F5F5 */
+  --popover: 47 46 46; /* #2F2E2E */
+  --popover-foreground: 245 245 245; /* #F5F5F5 */
+  --primary: 356 87% 23%; /* #6E080F */
+  --primary-foreground: 245 245 245; /* #F5F5F5 */
+  --secondary: 47 46 46; /* #2F2E2E */
+  --secondary-foreground: 245 245 245; /* #F5F5F5 */
+  --muted: 47 46 46; /* #2F2E2E */
+  --muted-foreground: 220 220 218; /* #DCDCDA */
+  --accent: 214 100% 50%; /* #006FFD */
+  --accent-foreground: 245 245 245; /* #F5F5F5 */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 245 245 245; /* #F5F5F5 */
+  --border: 47 46 46; /* #2F2E2E */
+  --input: 47 46 46; /* #2F2E2E */
+  --ring: 356 87% 23%; /* #6E080F */
+  --chart-1: 356 87% 23%; /* #6E080F */
+  --chart-2: 214 100% 50%; /* #006FFD */
+  --chart-3: 220 220 218; /* #DCDCDA */
+  --chart-4: 47 46 46; /* #2F2E2E */
+  --chart-5: 20 20 20; /* #141414 */
+  --sidebar: 47 46 46; /* #2F2E2E */
+  --sidebar-foreground: 245 245 245; /* #F5F5F5 */
+  --sidebar-primary: 356 87% 23%; /* #6E080F */
+  --sidebar-primary-foreground: 245 245 245; /* #F5F5F5 */
+  --sidebar-accent: 214 100% 50%; /* #006FFD */
+  --sidebar-accent-foreground: 245 245 245; /* #F5F5F5 */
+  --sidebar-border: 47 46 46; /* #2F2E2E */
+  --sidebar-ring: 356 87% 23%; /* #6E080F */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-  a:hover {
-    color: #747bff;
+  body {
+    @apply bg-background text-foreground;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+/* Custom utility classes for Langara Hacks */
+@layer utilities {
+  .bg-lh-gradient {
+    background: linear-gradient(135deg, #141414 0%, #2F2E2E 100%);
+  }
+  
+  .border-lh-primary {
+    border-color: #6E080F;
+  }
+  
+  .shadow-lh-card {
+    box-shadow: 10px 4px 14px 7px rgba(0, 0, 0, 0.25);
+  }
+  
+  .shadow-lh-hero {
+    box-shadow: 13px 20px 40px 2px rgba(129, 121, 121, 1);
   }
 }

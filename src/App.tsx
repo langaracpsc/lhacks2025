@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import useFirstLoad from './hooks/useFirstLoad'
-import SplashScreen from './components/SplashScreen'
-import MainContent from './components/MainContent'
-
+import './App.css'
+import { Navigation } from '@/components/Navigation'
+import { HeroSection } from '@/components/HeroSection'
+import { AboutSection } from '@/components/AboutSection'
+import { ProjectsSection } from '@/components/ProjectsSection'
+import { FAQSection } from '@/components/FAQSection'
+import { Footer } from '@/components/Footer'
 
 function App() {
-  const isFirstLoad = useFirstLoad()
-  const [showSplash, setShowSplash] = useState(true)
-
-  const handleSplashComplete = () => {
-    setShowSplash(true)
-  }
-
-  // Show splash screen only on first load
- 
-    return <SplashScreen onComplete={handleSplashComplete} />
-  
-
-  // Show main content
-  // return <MainContent />
+  return (
+    <div className="min-h-screen bg-lh-dark font-inter">
+      <Navigation />
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <ProjectsSection />
+        <FAQSection />
+      </main>
+      <Footer />
+    </div>
+  )
 }
 
 export default App
