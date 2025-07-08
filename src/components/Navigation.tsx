@@ -1,7 +1,5 @@
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,12 +15,12 @@ export const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-lh-dark/95 backdrop-blur-sm border-b border-lh-medium/20"
+      className="fixed top-0 left-0 right-0 z-50 bg-lh-dark/95 backdrop-blur-sm"
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Desktop Navigation - Left aligned */}
+          <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.label}
@@ -31,17 +29,20 @@ export const Navigation = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.3 }}
                 whileHover={{ 
-                  scale: 1.05,
-                  color: '#006FFD'
+                  scale: 1.05
                 }}
-                className="text-lh-text-light/60 hover:text-lh-accent transition-colors duration-300 text-sm font-bold font-helvetica"
+                className="text-[18px] font-bold transition-colors duration-300"
+                style={{
+                  color: 'rgba(245, 245, 245, 0.59)',
+                  fontFamily: 'system-ui, -apple-system, sans-serif'
+                }}
               >
                 {item.label}
               </motion.a>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Right aligned */}
           <div className="md:hidden ml-auto">
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
@@ -50,55 +51,49 @@ export const Navigation = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-16 h-12 bg-lh-text-light rounded-md flex items-center justify-center transition-colors"
+              className="w-[68px] h-[54px] rounded-md flex items-center justify-center transition-colors relative"
+              style={{
+                backgroundColor: 'rgb(245, 245, 245)'
+              }}
             >
-              {/* Hamburger Menu SVG */}
-              <svg 
-                width="32" 
-                height="24" 
-                viewBox="0 0 32 24" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <motion.rect 
-                  x="3" 
-                  y="3" 
-                  width="26" 
-                  height="3" 
-                  rx="1.5"
-                  fill="#006FFD"
+              {/* Hamburger Menu Lines matching Figma specs */}
+              <div className="relative w-[57px] h-[40px]">
+                <motion.div
+                  className="absolute w-[57px] h-[3px] rounded-[1.5px]"
+                  style={{
+                    backgroundColor: 'rgb(0, 111, 253)',
+                    top: '6.75px'
+                  }}
                   animate={{
                     rotate: isMenuOpen ? 45 : 0,
-                    y: isMenuOpen ? 9 : 0
+                    y: isMenuOpen ? 13.5 : 0
                   }}
                   transition={{ duration: 0.3 }}
                 />
-                <motion.rect 
-                  x="3" 
-                  y="10.5" 
-                  width="26" 
-                  height="3" 
-                  rx="1.5"
-                  fill="#006FFD"
+                <motion.div
+                  className="absolute w-[57px] h-[3px] rounded-[1.5px]"
+                  style={{
+                    backgroundColor: 'rgb(0, 111, 253)',
+                    top: '20.25px'
+                  }}
                   animate={{
                     opacity: isMenuOpen ? 0 : 1
                   }}
                   transition={{ duration: 0.3 }}
                 />
-                <motion.rect 
-                  x="3" 
-                  y="18" 
-                  width="26" 
-                  height="3" 
-                  rx="1.5"
-                  fill="#006FFD"
+                <motion.div
+                  className="absolute w-[57px] h-[3px] rounded-[1.5px]"
+                  style={{
+                    backgroundColor: 'rgb(0, 111, 253)',
+                    top: '33.75px'
+                  }}
                   animate={{
                     rotate: isMenuOpen ? -45 : 0,
-                    y: isMenuOpen ? -9 : 0
+                    y: isMenuOpen ? -13.5 : 0
                   }}
                   transition={{ duration: 0.3 }}
                 />
-              </svg>
+              </div>
             </motion.button>
           </div>
         </div>
@@ -126,7 +121,10 @@ export const Navigation = () => {
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ x: 10 }}
                 onClick={() => setIsMenuOpen(false)}
-                className="block text-lh-text-light/60 hover:text-lh-accent transition-colors duration-300 text-sm font-bold font-helvetica py-2"
+                className="block text-[24px] font-bold py-2 transition-colors duration-300"
+                style={{
+                  color: 'rgba(245, 245, 245, 0.59)'
+                }}
               >
                 {item.label}
               </motion.a>

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 interface AnimatedSectionProps {
   children: ReactNode
@@ -40,7 +40,7 @@ export const AnimatedSection = ({
         ease: [0.25, 0.25, 0.25, 0.75]
       }}
       viewport={{ once: true, amount: 0.3 }}
-      className={className}
+      className={`w-full ${className}`}
     >
       {children}
     </motion.div>
@@ -69,7 +69,7 @@ export const StaggeredContainer = ({
           }
         }
       }}
-      className={className}
+      className={`w-full ${className}`}
     >
       {children}
     </motion.div>
@@ -90,7 +90,7 @@ export const StaggeredItem = ({
         show: { opacity: 1, y: 0 }
       }}
       transition={{ duration: 0.5 }}
-      className={className}
+      className={`w-full ${className}`}
     >
       {children}
     </motion.div>

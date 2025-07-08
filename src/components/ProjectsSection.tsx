@@ -1,216 +1,223 @@
 import { motion } from 'motion/react'
-import { AnimatedSection, StaggeredContainer, StaggeredItem } from '@/components/motion/AnimatedSection'
-import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Code, Palette, Brain, Zap, Globe, Shield, ArrowRight, ArrowLeft } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 
 export const ProjectsSection = () => {
-  const projectCategories = [
+  // Sample project data - you can expand this
+  const projects = [
     {
-      icon: Code,
-      title: "Web Development",
-      description: "Full-stack applications, APIs, and web platforms",
-      color: "bg-lh-accent/20 text-lh-accent",
-      projects: ["E-commerce Platform", "Social Media App", "Portfolio Website"]
+      id: 1,
+      title: "LANGARA HACKS 2023",
+      name: "Project Name 1",
+      info: "Information lorem ipsum lorem ipsum",
+      description: [
+        "lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.",
+        "Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+      ],
+      buttonText: "View on Devpost",
+      imageColor: "rgb(47, 122, 255)"
     },
     {
-      icon: Brain,
-      title: "AI & Machine Learning",
-      description: "Intelligent systems, data analysis, and automation",
-      color: "bg-lh-primary/20 text-lh-primary",
-      projects: ["Chatbot Assistant", "Image Recognition", "Predictive Analytics"]
+      id: 2,
+      title: "LANGARA HACKS 2024",
+      name: "Project Name 2", 
+      info: "Another project description here",
+      description: [
+        "Different project with unique features and technologies. Built with modern frameworks and innovative solutions for real-world problems.",
+        "This project showcases advanced development skills and creative problem-solving approaches that were developed during the hackathon."
+      ],
+      buttonText: "View on GitHub",
+      imageColor: "rgb(34, 197, 94)"
     },
     {
-      icon: Globe,
-      title: "Social Impact",
-      description: "Solutions for community and environmental challenges",
-      color: "bg-lh-accent/20 text-lh-accent",
-      projects: ["Climate Tracker", "Community Helper", "Education Tool"]
-    },
-    {
-      icon: Palette,
-      title: "Creative Tech",
-      description: "Art, design, and interactive experiences",
-      color: "bg-lh-primary/20 text-lh-primary",
-      projects: ["Digital Art Gallery", "Music Visualizer", "VR Experience"]
-    },
-    {
-      icon: Shield,
-      title: "Cybersecurity",
-      description: "Security tools, privacy solutions, and safe computing",
-      color: "bg-lh-accent/20 text-lh-accent",
-      projects: ["Password Manager", "Network Scanner", "Privacy Shield"]
-    },
-    {
-      icon: Zap,
-      title: "Innovation",
-      description: "Experimental ideas and cutting-edge technology",
-      color: "bg-lh-primary/20 text-lh-primary",
-      projects: ["IoT Dashboard", "Blockchain App", "AR Tool"]
+      id: 3,
+      title: "LANGARA HACKS 2025",
+      name: "Project Name 3",
+      info: "Third project showcase entry",
+      description: [
+        "Latest project featuring cutting-edge technology and user-centered design principles. Developed with accessibility and performance in mind.",
+        "Demonstrates expertise in full-stack development and modern deployment practices with comprehensive testing and documentation."
+      ],
+      buttonText: "View Demo",
+      imageColor: "rgb(168, 85, 247)"
     }
   ]
 
   return (
     <section id="projects" className="py-20 bg-lh-dark relative overflow-hidden">
-      {/* Decorative floating elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Left navigation circle */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="absolute left-8 top-1/2 -translate-y-1/2 w-20 h-20 bg-lh-primary rounded-full flex items-center justify-center z-10"
-        >
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="cursor-pointer"
-          >
-            <ArrowLeft className="w-6 h-6 text-lh-text-light" />
-          </motion.div>
-        </motion.div>
-
-        {/* Right navigation circle */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="absolute right-8 top-1/2 -translate-y-1/2 w-20 h-20 bg-lh-primary rounded-full flex items-center justify-center z-10"
-        >
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="cursor-pointer"
-          >
-            <ArrowRight className="w-6 h-6 text-lh-text-light" />
-          </motion.div>
-        </motion.div>
-      </div>
-
       <div className="container mx-auto px-4">
         {/* Section Title */}
-        <AnimatedSection delay={0.2} className="text-center mb-16">
-          <p className="text-xl text-lh-text-light/80 font-spline mb-4">
-            lorem ipsum lorem ipsum lorem
-          </p>
-          <h2 className="text-hero font-bold text-lh-text-light mb-6 font-helvetica">
-            PROJECTS
-          </h2>
-        </AnimatedSection>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-[80px] font-bold text-white mb-4">PROJECTS</h2>
+          <p className="text-xl text-yellow-400">lorem ipsum lorem ipsum lorem</p>
+        </motion.div>
 
-        {/* Project Categories Grid */}
-        <StaggeredContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projectCategories.map((category, index) => (
-            <StaggeredItem key={category.title}>
-              <motion.div
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.2 }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Card className="bg-lh-medium/20 border-lh-medium/30 backdrop-blur-sm shadow-lh-card h-full group cursor-pointer">
-                  <CardContent className="p-8">
-                    {/* Icon */}
-                    <motion.div
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                      className={`inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 ${category.color}`}
-                    >
-                      <category.icon className="w-8 h-8" />
-                    </motion.div>
-
-                    {/* Title & Description */}
-                    <h3 className="text-xl font-bold text-lh-text-light mb-4 group-hover:text-lh-accent transition-colors">
-                      {category.title}
-                    </h3>
-                    <p className="text-lh-text-light/60 mb-6 leading-relaxed">
-                      {category.description}
-                    </p>
-
-                    {/* Example Projects */}
-                    <div className="space-y-2">
-                      {category.projects.map((project, projectIndex) => (
-                        <motion.div
-                          key={project}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: projectIndex * 0.1 }}
+        {/* Carousel */}
+        <div className="relative max-w-6xl mx-auto">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {projects.map((project, index) => (
+                <CarouselItem key={project.id}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="rounded-lg overflow-hidden"
+                    style={{
+                      backgroundColor: 'rgb(220, 220, 218)',
+                      border: '1px solid rgba(168, 157, 157, 0.74)'
+                    }}
+                  >
+                    <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+                      {/* Left Content */}
+                      <div className="p-12 flex flex-col justify-center">
+                        {/* Title */}
+                        <motion.h3
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6 }}
                           viewport={{ once: true }}
-                          className="flex items-center space-x-2"
+                          className="text-[48px] font-bold mb-6 leading-tight"
+                          style={{
+                            color: 'rgb(111, 8, 15)'
+                          }}
                         >
-                          <div className="w-1 h-1 bg-lh-accent rounded-full"></div>
-                          <span className="text-lh-text-light/50 text-sm">{project}</span>
+                          {project.title}
+                        </motion.h3>
+
+                        {/* Name Placeholder */}
+                        <motion.h4
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.1 }}
+                          viewport={{ once: true }}
+                          className="text-2xl font-semibold mb-4"
+                          style={{
+                            color: 'rgb(20, 20, 20)'
+                          }}
+                        >
+                          {project.name}
+                        </motion.h4>
+
+                        {/* Information Text */}
+                        <motion.p
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.2 }}
+                          viewport={{ once: true }}
+                          className="text-sm mb-6"
+                          style={{
+                            color: 'rgb(20, 20, 20)'
+                          }}
+                        >
+                          {project.info}
+                        </motion.p>
+
+                        {/* Description Text */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          viewport={{ once: true }}
+                          className="space-y-4 mb-8"
+                        >
+                          {project.description.map((paragraph, idx) => (
+                            <p key={idx} className="text-base leading-relaxed" style={{ color: 'rgb(20, 20, 20)' }}>
+                              {paragraph}
+                            </p>
+                          ))}
                         </motion.div>
-                      ))}
+
+                        {/* Button */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.4 }}
+                          viewport={{ once: true }}
+                        >
+                          <Button
+                            className="rounded-[40px] px-6 py-3 text-base transition-all"
+                            style={{
+                              backgroundColor: 'transparent',
+                              border: '1px solid rgb(111, 8, 14)',
+                              color: 'rgb(111, 8, 14)'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = 'rgb(111, 8, 14)'
+                              e.currentTarget.style.color = 'white'
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = 'transparent'
+                              e.currentTarget.style.color = 'rgb(111, 8, 14)'
+                            }}
+                          >
+                            {project.buttonText}
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </motion.div>
+                      </div>
+
+                      {/* Right Image Placeholder */}
+                      <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="relative flex items-center justify-center p-8"
+                      >
+                        <div 
+                          className="w-full h-full rounded-[40px] flex items-center justify-center text-white/50 text-xl font-medium"
+                          style={{
+                            backgroundColor: project.imageColor,
+                            minHeight: '400px'
+                          }}
+                        >
+                          Picture Placeholder
+                        </div>
+                      </motion.div>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </StaggeredItem>
-          ))}
-        </StaggeredContainer>
-
-        {/* Call to Action */}
-        <AnimatedSection delay={0.8} className="text-center">
-          <Card className="bg-gradient-to-r from-lh-primary/20 to-lh-accent/20 border-lh-primary/30 max-w-4xl mx-auto">
-            <CardContent className="p-12">
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-2xl font-bold text-lh-text-light mb-4"
-              >
-                Ready to Build Something Amazing?
-              </motion.h3>
-              
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-lh-text-light/80 mb-8 max-w-2xl mx-auto"
-              >
-                Join hundreds of developers, designers, and innovators for 48 hours of creativity, 
-                learning, and building the future. Your next great idea starts here!
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="flex gap-4 justify-center flex-wrap"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button 
-                    size="lg"
-                    className="bg-lh-primary hover:bg-lh-primary/90 text-lh-text-light"
-                  >
-                    Register Now
-                  </Button>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button 
-                    size="lg"
-                    variant="outline"
-                    className="border-lh-accent text-lh-accent hover:bg-lh-accent hover:text-lh-text-light"
-                  >
-                    View Past Projects
-                  </Button>
-                </motion.div>
-              </motion.div>
-            </CardContent>
-          </Card>
-        </AnimatedSection>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            
+            {/* Custom Navigation Buttons */}
+            <CarouselPrevious 
+              className="w-20 h-20 -left-12 border-0"
+              style={{
+                backgroundColor: 'rgb(111, 8, 14)',
+                color: 'white'
+              }}
+            />
+            <CarouselNext 
+              className="w-20 h-20 -right-12 border-0"
+              style={{
+                backgroundColor: 'rgb(111, 8, 14)',
+                color: 'white'
+              }}
+            />
+          </Carousel>
+        </div>
       </div>
     </section>
   )

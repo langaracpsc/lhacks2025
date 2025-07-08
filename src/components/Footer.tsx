@@ -1,7 +1,5 @@
 import { motion } from 'motion/react'
-import { AnimatedSection, StaggeredContainer, StaggeredItem } from '@/components/motion/AnimatedSection'
-import { Card, CardContent } from '@/components/ui/card'
-import { Github, Twitter, Instagram, Mail, MapPin } from 'lucide-react'
+import { Mail, Instagram } from 'lucide-react'
 
 export const Footer = () => {
   const socialLinks = [
@@ -9,7 +7,23 @@ export const Footer = () => {
     { icon: Instagram, href: "#", label: "Instagram" }
   ]
 
+  // Team members data - duplicated for seamless loop
   const teamMembers = [
+    {
+      name: "Name Placeholder",
+      position: "Position Placeholder",
+      image: "placeholder"
+    },
+    {
+      name: "Name Placeholder", 
+      position: "Position Placeholder",
+      image: "placeholder"
+    },
+    {
+      name: "Name Placeholder",
+      position: "Position Placeholder", 
+      image: "placeholder"
+    },
     {
       name: "Name Placeholder",
       position: "Position Placeholder",
@@ -37,107 +51,93 @@ export const Footer = () => {
     }
   ]
 
+  // Duplicate the array for seamless infinite scroll
+  const duplicatedMembers = [...teamMembers, ...teamMembers]
+
   return (
-    <footer className="bg-lh-dark border-t border-lh-medium/20">
-      <div className="container mx-auto px-4 py-16">
-        {/* Team Section */}
-        <AnimatedSection delay={0.2} className="mb-16">
-          <h2 className="text-hero font-bold text-lh-text-light text-center mb-8 font-helvetica">
-            LANGARA HACKS 2025 HACKATHON COMMITTEE
-          </h2>
-          
-          <StaggeredContainer 
-            staggerDelay={0.15} 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8"
+    <footer className="bg-lh-dark py-20">
+      <div className="container mx-auto px-4">
+        {/* Main Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-[60px] font-bold text-white text-center mb-16 leading-tight"
+        >
+          LANGARA HACKS 2025<br />
+          HACKATHON COMMITTEE
+        </motion.h2>
+
+        {/* Team Members Continuous Scroll */}
+        <div className="relative mb-16 overflow-hidden">
+          <motion.div
+            className="flex gap-4 md:gap-6"
+            animate={{
+              x: [0, -100 + '%']
+            }}
+            transition={{
+              duration: 40,
+              repeat: Infinity,
+              ease: "linear"
+            }}
           >
-            {teamMembers.map((member, index) => (
-              <StaggeredItem key={index}>
-                <motion.div
-                  whileHover={{ 
-                    scale: 1.05,
-                    transition: { duration: 0.2 }
+            {duplicatedMembers.map((member, index) => (
+              <div
+                key={index}
+                className="text-center flex-shrink-0 w-[200px] md:w-[240px]"
+              >
+                {/* Team Member Card */}
+                <div 
+                  className="w-full h-[288px] rounded-[13px] mb-4 flex items-center justify-center text-white/60 text-sm"
+                  style={{
+                    backgroundColor: 'rgb(46, 46, 46)'
                   }}
-                  whileTap={{ scale: 0.98 }}
                 >
-                  <Card className="bg-lh-medium/20 border-lh-medium/30 backdrop-blur-sm shadow-lh-card h-full">
-                    <CardContent className="p-6 text-center">
-                      {/* Profile Image Placeholder */}
-                      <div className="w-24 h-24 mx-auto mb-4 bg-lh-medium/40 rounded-full flex items-center justify-center">
-                        <span className="text-lh-text-light/60 text-sm">
-                          Picture Placeholder
-                        </span>
-                      </div>
-                      
-                      {/* Name & Position */}
-                      <h4 className="text-lg font-semibold text-lh-text-light mb-2">
-                        {member.name}
-                      </h4>
-                      <p className="text-lh-text-light/60 text-sm">
-                        {member.position}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </StaggeredItem>
+                  Picture Placeholder
+                </div>
+                
+                {/* Name & Position */}
+                <h4 className="text-white text-lg font-medium mb-1">
+                  {member.name}
+                </h4>
+                <p className="text-white/80 text-sm">
+                  {member.position}
+                </p>
+              </div>
             ))}
-          </StaggeredContainer>
-        </AnimatedSection>
+          </motion.div>
+        </div>
 
         {/* Footer Bottom */}
-        <AnimatedSection delay={0.4}>
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-            {/* Social Handle */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="flex items-center space-x-4"
-            >
-              <span className="text-lh-text-light font-inter text-sm">
-                @langaracpsc
-              </span>
-            </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex justify-between items-center"
+        >
+          {/* Social Handle */}
+          <span className="text-white text-sm">
+            @langaracpsc
+          </span>
 
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="flex space-x-6"
-            >
-              {socialLinks.map((link, index) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  whileHover={{ 
-                    scale: 1.2,
-                    color: '#006FFD'
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  className="text-lh-text-light/60 hover:text-lh-accent transition-colors"
-                  aria-label={link.label}
-                >
-                  <link.icon className="w-8 h-8" />
-                </motion.a>
-              ))}
-            </motion.div>
+          {/* Social Links */}
+          <div className="flex space-x-6">
+            {socialLinks.map((link, index) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-white/80 hover:text-white transition-colors"
+                aria-label={link.label}
+              >
+                <link.icon className="w-8 h-8" strokeWidth={1.5} />
+              </motion.a>
+            ))}
           </div>
-
-          {/* Copyright */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-center mt-8 pt-8 border-t border-lh-medium/20"
-          >
-            <p className="text-lh-text-light/40 text-sm">
-              © 2025 Langara Hacks. All rights reserved.
-            </p>
-          </motion.div>
-        </AnimatedSection>
+        </motion.div>
       </div>
     </footer>
   )

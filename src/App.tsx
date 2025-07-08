@@ -1,23 +1,39 @@
-import './App.css'
-import { Navigation } from '@/components/Navigation'
-import { HeroSection } from '@/components/HeroSection'
-import { AboutSection } from '@/components/AboutSection'
-import { ProjectsSection } from '@/components/ProjectsSection'
-import { FAQSection } from '@/components/FAQSection'
-import { Footer } from '@/components/Footer'
+import { useState } from 'react'
+import {
+  Navigation,
+  HeroSection,
+  AboutSection,
+  ProjectsSection,
+  FAQSection,
+  Footer,
+  AnimatedSection,
+  MainContent,
+  LocationSection
+} from './components'
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true)
+
+  // Show main content
   return (
-    <div className="min-h-screen bg-lh-dark font-inter">
+    <main className="bg-lh-dark min-h-screen flex flex-col justify-between gap-20">
       <Navigation />
-      <main>
-        <HeroSection />
+      <HeroSection />
+      <MainContent />
+      <AnimatedSection>
         <AboutSection />
+      </AnimatedSection>
+      <AnimatedSection>
+        <LocationSection />
+      </AnimatedSection>
+      <AnimatedSection>
         <ProjectsSection />
+      </AnimatedSection>
+      <AnimatedSection>
         <FAQSection />
-      </main>
+      </AnimatedSection>
       <Footer />
-    </div>
+    </main>
   )
 }
 
