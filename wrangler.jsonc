@@ -1,0 +1,5 @@
+{
+  "name": "langara-hacks-2025",
+  "compatibility_date": "2025-04-03",
+  "main": "./src/index.ts"
+}
