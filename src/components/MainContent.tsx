@@ -55,7 +55,7 @@ const MainContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
-        className=" text-white/80 text-xl mb-16 max-w-3xl mx-auto text-center leading-relaxed"
+        className=" text-white/80 text-center relative z-20  absolute text-xl bottom-20 max-w-3xl mx-auto text-center leading-relaxed"
       >
         lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis leo eu aenean sed diam urna tempor. ulvinar vivamus fringilla lacus nec metusbibendum
       </motion.p>

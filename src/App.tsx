@@ -44,38 +44,30 @@ function App() {
     )
   }
 
-  return (
+    return (
     <div className="relative">
-      <AnimatePresence mode="wait">
-        {showSplash ? (
-          <SplashScreen key="splash" onComplete={handleSplashComplete} />
-        ) : (
-          <motion.main
-            key="main"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-lh-dark min-h-screen flex flex-col justify-between gap-20"
-          >
-            <Navigation />
-            <HeroSection />
-            <MainContent />
-            <AnimatedSection>
-              <AboutSection />
-            </AnimatedSection>
-            <AnimatedSection>
-              <LocationSection />
-            </AnimatedSection>
-            <AnimatedSection>
-              <ProjectsSection />
-            </AnimatedSection>
-            <AnimatedSection>
-              <FAQSection />
-            </AnimatedSection>
-            <Footer />
-          </motion.main>
-        )}
-      </AnimatePresence>
+      {showSplash ? (
+        <SplashScreen onComplete={handleSplashComplete} />
+      ) : (
+        <main className="bg-lh-dark min-h-screen flex flex-col justify-between gap-20">
+          <Navigation />
+          <HeroSection />
+          <MainContent />
+          <AnimatedSection>
+            <AboutSection />
+          </AnimatedSection>
+          <AnimatedSection>
+            <LocationSection />
+          </AnimatedSection>
+          <AnimatedSection>
+            <ProjectsSection />
+          </AnimatedSection>
+          <AnimatedSection>
+            <FAQSection />
+          </AnimatedSection>
+          <Footer />
+        </main>
+      )}
     </div>
   )
 }

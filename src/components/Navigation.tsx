@@ -47,7 +47,7 @@ export const Navigation = () => {
                   className="absolute bottom-0 left-0 h-0.5 bg-white"
                   initial={{ width: 0 }}
                   whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  transition={{ duration: 0.15, ease: 'easeInOut' }}
                 />
               </motion.a>
             ))}

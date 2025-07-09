@@ -14,13 +14,13 @@ export const Footer = () => {
       image: "placeholder"
     },
     {
-      name: "Name Placeholder", 
+      name: "Name Placeholder",
       position: "Position Placeholder",
       image: "placeholder"
     },
     {
       name: "Name Placeholder",
-      position: "Position Placeholder", 
+      position: "Position Placeholder",
       image: "placeholder"
     },
     {
@@ -60,7 +60,7 @@ export const Footer = () => {
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
           className="text-[60px] font-bold text-white text-center mb-16 leading-tight px-4"
         >
@@ -76,7 +76,7 @@ export const Footer = () => {
               x: [0, -100 + '%']
             }}
             transition={{
-              duration: 25,
+              duration: 20,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -87,22 +87,26 @@ export const Footer = () => {
                 className="text-center flex-shrink-0 w-[200px] md:w-[240px]"
               >
                 {/* Team Member Card */}
-                <div 
-                  className="w-full h-[288px] rounded-[13px] mb-4 flex items-center justify-center text-white/60 text-sm"
+                <div
+                  className="w-full h-[288px] rounded-[13px] mb-4  p-5 flex items-end justify-center text-white/60 text-sm"
                   style={{
                     backgroundColor: 'rgb(46, 46, 46)'
                   }}
                 >
-                  Picture Placeholder
+
+                  <div>
+                    <h4 className="text-white text-lg font-medium mb-1">
+                      {member.name}
+                    </h4>
+                    <p className="text-white/80 text-sm">
+                      {member.position}
+                    </p>
+
+                  </div>
                 </div>
-                
+
                 {/* Name & Position */}
-                <h4 className="text-white text-lg font-medium mb-1">
-                  {member.name}
-                </h4>
-                <p className="text-white/80 text-sm">
-                  {member.position}
-                </p>
+
               </div>
             ))}
           </motion.div>
@@ -127,9 +131,25 @@ export const Footer = () => {
               <motion.a
                 key={link.label}
                 href={link.href}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-white/80 hover:text-white transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.15,
+                  ease: "easeOut",
+                  delay: index * 0.02
+                }}
+                viewport={{ once: true }}
+                whileHover={{
+                  scale: 1.3,
+                  y: -4,
+                  rotate: 8,
+                  transition: { duration: 0.08, ease: "easeOut" }
+                }}
+                whileTap={{
+                  scale: 0.85,
+                  transition: { duration: 0.03 }
+                }}
+                className="text-white/80 hover:text-white transition-all duration-75 cursor-pointer"
                 aria-label={link.label}
               >
                 <link.icon className="w-8 h-8" strokeWidth={1.5} />

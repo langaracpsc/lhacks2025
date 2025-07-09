@@ -6,20 +6,14 @@ interface SplashScreenProps {
 }
 
 export const SplashScreen = ({ onComplete }: SplashScreenProps) => {
-  const [isVisible, setIsVisible] = useState(true)
-
   useEffect(() => {
-    // Show splash for 3 seconds, then fade out
+    // Show splash for 3 seconds, then trigger transition
     const timer = setTimeout(() => {
-      setIsVisible(false)
-      // Wait for fade out animation to complete before calling onComplete
-      setTimeout(onComplete, 500)
+      onComplete()
     }, 3000)
 
     return () => clearTimeout(timer)
   }, [onComplete])
-
-  if (!isVisible) return null
 
   return (
     <motion.div
@@ -64,14 +58,7 @@ export const SplashScreen = ({ onComplete }: SplashScreenProps) => {
        
       </motion.div>
 
-      {/* Fade out animation */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isVisible ? 0 : 1 }}
-        transition={{ duration: 0.5, delay: 2.5 }}
-        className="absolute inset-0 bg-lh-dark"
-        style={{ pointerEvents: 'none' }}
-      />
+
     </motion.div>
   )
 } 
