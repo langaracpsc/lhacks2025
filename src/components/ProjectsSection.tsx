@@ -14,40 +14,57 @@ export const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: "LANGARA HACKS 2023",
-      name: "Project Name 1",
-      info: "Information lorem ipsum lorem ipsum",
+      title: "LANGARA HACKS 2024",
+      name: "Podlyze",
+      info: "Podcast Transcription and Analysis",
       description: [
-        "lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.",
-        "Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+        "Podlyze takes YouTube podcast links, generates concise summaries, and offers real-time chat functionality, allowing users to ask questions about the summarized content. It also translates the summaries into various languages, making the podcast more accessible to non-native speakers. Users can interact with the app to quickly grasp the key points or dive deeper into any section they're interested in..",
+        "I used a combination of Next.js for the frontend and Node.js with Express for the backend. For podcast transcription and summarization, I integrated advanced natural language processing models. The translation feature leverages cloud-based APIs for multilingual support. The chat functionality is powered by a custom-built conversational AI that responds to queries about the podcast summaries. The entire infrastructure is backed by PostgreSQL for efficient data management."
       ],
       buttonText: "View on Devpost",
-      imageColor: "rgb(47, 122, 255)"
+      imageColor: "rgb(47, 122, 255)",
+      image: "/Podlyze.png",
+      link: "https://devpost.com/software/podlyze"
     },
     {
       id: 2,
       title: "LANGARA HACKS 2024",
-      name: "Project Name 2", 
-      info: "Another project description here",
+      name: "HireHigher", 
+      info: "An AI Analysis of your Interview Skills!",
       description: [
-        "Different project with unique features and technologies. Built with modern frameworks and innovative solutions for real-world problems.",
-        "This project showcases advanced development skills and creative problem-solving approaches that were developed during the hackathon."
+        "HireHigher reads your Resume, the job you want, your skills, and your Linkedin and generates questions tailored to the info you provides it. Our custom made AI-interviewer will simulate a real interview and take note of your answers. Afterwards, HireHigher will provide feedback regarding your speech.",
+        "We used React for the Frontend and Django for the backend. We hosted the backend on AWS. AI was built with OpenAi's GPT-4o-mini model. We used OCR for resume scraping, and Selenium for the Linkedin Info."
       ],
-      buttonText: "View on GitHub",
-      imageColor: "rgb(34, 197, 94)"
+      buttonText: "View on Devpost",
+      image: "/hireHigher.png",
+      link: "https://devpost.com/software/hirehigher"
     },
     {
       id: 3,
-      title: "LANGARA HACKS 2025",
-      name: "Project Name 3",
-      info: "Third project showcase entry",
+      title: "LANGARA HACKS 2024",
+      name: "HacksBricsTeam",
+      info: "AI powered stock advisor.",
       description: [
-        "Latest project featuring cutting-edge technology and user-centered design principles. Developed with accessibility and performance in mind.",
-        "Demonstrates expertise in full-stack development and modern deployment practices with comprehensive testing and documentation."
+        "This financial advisor app uses real-time stock data and AI analysis to recommend the best investment options for users. It filters companies based on trading volume for stability, analyzes reputation and past performance using AI, and tailors suggestions to the user’s income. Users can add stocks to a wishlist, and the platform includes secure login/signup with end-to-end encryption via JSON Web Tokens.",
+        "Built with the MERN stack, the app uses Mongoose for database management and JSON Web Tokens with Express for authentication. The backend handles requests to OpenAI’s GPT-3.5-turbo and Polygon.io for real-time stock data. After filtering data, the AI acts as a final layer to choose the most profitable stocks based on various factors. The frontend then displays these results through a user-friendly interface."
       ],
-      buttonText: "View Demo",
-      imageColor: "rgb(168, 85, 247)"
-    }
+      buttonText: "View on Devpost",
+      image: "/finaceadvisor.jpg",
+      link: "https://devpost.com/software/hacksbricsteam"
+    },
+    {
+      id: 4,
+      title: "LANGARA HACKS 2024",
+      name: "Karaoke App",
+      info: "Music and Karaoke",
+      description: [
+        "Our Karaoke app transforms any YouTube video into a karaoke-ready track. By removing the vocals and displaying synced lyrics, it allows users to sing along to just the instrumental version of their favorite songs",
+        "We developed a user-friendly frontend that lets users drag and drop or paste a YouTube URL. Once the link is received, the app uses YouTube-DLP to download the audio and video content. It then applies MDX-Net, a powerful AI model for audio source separation, to isolate and extract the instrumental track. At the same time, the app uses the Genius API to identify and fetch the lyrics based on the song. Finally, the interface plays the instrumental version while displaying the synchronized lyrics, creating an intuitive and immersive karaoke experience."
+      ],
+      buttonText: "View on Devpost",
+      image: "/karaoke.jpeg",
+      link: "https://devpost.com/software/karaoke-app"
+    },
   ]
 
   return (
@@ -61,8 +78,8 @@ export const ProjectsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16 px-4"
         >
-          <h2 className="text-[80px] font-bold text-white mb-4">PROJECTS</h2>
-          <p className="text-xl text-yellow-400">lorem ipsum lorem ipsum lorem</p>
+          <h2 className="text-[80px] font-bold text-[#f8f0de] mb-4">PROJECTS</h2>
+          <p className="text-xl text-yellow-400">Projects from our LangaraHacks 2024</p>
         </motion.div>
 
         {/* Carousel */}
@@ -77,34 +94,43 @@ export const ProjectsSection = () => {
             <CarouselContent className="-ml-2 md:-ml-4">
               {projects.map((project, index) => (
                 <CarouselItem key={project.id} className="pl-2 md:pl-4 md:basis-4/5">
-                  <motion.div
+              <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="rounded-lg overflow-hidden"
+                    className="rounded-lg overflow-hidden group relative"
                     style={{
                       backgroundColor: 'rgb(220, 220, 218)',
                       border: '1px solid rgba(168, 157, 157, 0.74)'
                     }}
-                  >
-                    <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
-                      {/* Left Content */}
+                        >
+                    {/* Hover Image Dropdown */}
+                    <div className="absolute bottom-0 left-0  right-0 h-0 group-hover:h-96 transition-all duration-500 ease-in-out overflow-hidden z-10 p-4">
+                      <img 
+                          src={project.image} 
+                          alt={project.name} 
+                          className="w-full h-full object-contain rounded-lg" 
+                        />
+                    </div>
+                    
+                    <div className="grid grid-cols-1 min-h-[600px] relative z-20 group-hover:pb-96 transition-all duration-500 ease-in-out">
+                      {/* Top Content */}
                       <div className="p-12 flex flex-col justify-center">
                         {/* Title */}
-                        <motion.h3
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6 }}
-                          viewport={{ once: true }}
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
                           className="text-[48px] font-bold mb-6 leading-tight"
                           style={{
                             color: 'rgb(111, 8, 15)'
                           }}
-                        >
+              >
                           {project.title}
-                        </motion.h3>
-
+              </motion.h3>
+              
                         {/* Name Placeholder */}
                         <motion.h4
                           initial={{ opacity: 0, y: 20 }}
@@ -120,18 +146,18 @@ export const ProjectsSection = () => {
                         </motion.h4>
 
                         {/* Information Text */}
-                        <motion.p
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.2 }}
-                          viewport={{ once: true }}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
                           className="text-sm mb-6"
                           style={{
                             color: 'rgb(20, 20, 20)'
                           }}
-                        >
+              >
                           {project.info}
-                        </motion.p>
+              </motion.p>
 
                         {/* Description Text */}
                         <motion.div
@@ -149,13 +175,14 @@ export const ProjectsSection = () => {
                         </motion.div>
 
                         {/* Button */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.4 }}
-                          viewport={{ once: true }}
-                        >
-                          <Button
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+                >
+                  <Button 
+                   onClick={() => window.open(project.link, '_blank')}
                             className="rounded-[40px] px-6 py-3 text-base transition-all"
                             style={{
                               backgroundColor: 'transparent',
@@ -164,7 +191,7 @@ export const ProjectsSection = () => {
                             }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.backgroundColor = 'rgb(111, 8, 14)'
-                              e.currentTarget.style.color = 'white'
+                              e.currentTarget.style.color = '#f8f0de'
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.backgroundColor = 'transparent'
@@ -173,40 +200,25 @@ export const ProjectsSection = () => {
                           >
                             {project.buttonText}
                             <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
-                        </motion.div>
+                  </Button>
+                </motion.div>
                       </div>
-
-                      {/* Right Image Placeholder */}
-                      <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="relative flex items-center justify-center p-8"
-                      >
-                        <div 
-                          className="w-full h-full rounded-[40px] flex items-center justify-center text-white/50 text-xl font-medium"
-                          style={{
-                            backgroundColor: project.imageColor,
-                            minHeight: '400px'
-                          }}
-                        >
-                          Picture Placeholder
-                        </div>
-                      </motion.div>
                     </div>
-                  </motion.div>
+              </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
             
             {/* Custom Navigation Buttons */}
             <CarouselPrevious 
-              className="w-12 h-12 left-4 border-0 cursor-pointer"
+              className="w-12 h-12 left-4 border-0 cursor-pointer fixed-nav-button"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
-                color: 'white'
+                color: '#f8f0de',
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 30
               }}
             >
               <svg
@@ -223,10 +235,14 @@ export const ProjectsSection = () => {
               </svg>
             </CarouselPrevious>
             <CarouselNext 
-              className="w-12 h-12 right-4 border-0 cursor-pointer"
+              className="w-12 h-12 right-4 border-0 cursor-pointer fixed-nav-button"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
-                color: 'white'
+                color: '#f8f0de',
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 30
               }}
             >
               <svg

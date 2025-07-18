@@ -16,16 +16,16 @@ export const LocationSection = () => {
             className="space-y-6"
           >
             <div className="space-y-4">
-              <h2 className="text-[48px] font-bold text-white leading-tight">
+              <h2 className="text-[48px] font-bold text-[#f8f0de] leading-tight">
                 T Building Gallery<br />
                 Langara College
               </h2>
               
               <div className="space-y-2">
-                <p className="text-white text-lg">
+                <p className="text-[#f8f0de] text-lg">
                   100 W 49th Ave,
                 </p>
-                <p className="text-white text-lg">
+                <p className="text-[#f8f0de] text-lg">
                   Vancouver, BC V5X 3B3
                 </p>
               </div>
@@ -41,11 +41,11 @@ export const LocationSection = () => {
               onMouseEnter={(e) => {
                 e.currentTarget.style.cursor = 'pointer'
                 e.currentTarget.style.backgroundColor = 'rgb(191, 18, 30)'
-                e.currentTarget.style.color = 'white'
+                e.currentTarget.style.color = '#f8f0de'
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent'
-                e.currentTarget.style.color = 'rgb(148, 15, 24)'
+                e.currentTarget.style.color = '#f8f0de'
               }}
             >
               View on Google Maps

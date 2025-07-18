@@ -8,28 +8,28 @@ export const FAQSection = () => {
 
   const faqs = [
     {
-      question: "lorem ipsum lorem ipsum lorem?",
-      answer: "lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor."
+      question: "What tools can I use during the hackathon?",
+      answer: "You're free to use any programming languages, frameworks, or tools you like, it's completely up to you. If you're struggling with something, our mentors will be there to help you get started and answer any technical questions along the way."
     },
     {
-      question: "lorem ipsum lorem ipsum lorem?",
-      answer: "Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu."
+      question: "Will food and drinks be provided?",
+      answer: "Yes! We'll keep you fueled with meals, snacks, and drinks throughout the event, so you can focus on building your project."
     },
     {
-      question: "lorem ipsum lorem ipsum lorem?",
-      answer: "Ad litora torquent per conubia nostra inceptos himenaeos. Duis vel sodales nunc, sit amet tempor ipsum. Mauris consectetur nulla vitae massa."
+      question: "How do I register for the hackathon?",
+      answer: "You can register through our official event page. Spots fill up fast, so sign up early!"
     },
     {
-      question: "lorem ipsum lorem ipsum lorem?",
-      answer: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula."
+      question: "Can students from other universities or colleges join?",
+      answer: "LangaraHacks 2025 is currently open to Langara students and alumni. If you're from another school and interested in joining, feel free to reach out, we're happy to chat!"
     },
     {
-      question: "lorem ipsum lorem ipsum lorem?",
-      answer: "Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui."
+      question: "Do I need a team to participate?",
+      answer: "Not at all! You can register solo or sign up with a team. We'll have a team formation channel in our Discord server to help you connect with others. While we'll do our best to help, we can't guarantee that everyone will be placed in a team, so try to connect early!"
     },
     {
-      question: "lorem ipsum lorem ipsum lorem?",
-      answer: "Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus."
+      question: "What kind of project should I build?",
+      answer: "That's up to you! You can build anything, from apps and games to tools or websites. The official theme will be announced on the day of the hackathon to keep things exciting, but you'll have the freedom to be creative within that theme."
     }
   ]
 
@@ -45,28 +45,45 @@ export const FAQSection = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-[80px] font-bold text-white mb-12 leading-tight">
+              <h2 className="text-[70px] text-[#f8f0de] mb-12 leading-tight">
                 FREQUENTLY<br />
                 ASKED<br />
                 QUESTIONS
               </h2>
-
               {/* Input Field */}
-              <div className="relative">
+              <form
+                onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                  e.preventDefault(); // Prevent default form submission
+
+                  if (!inputValue.trim()) {
+                    alert('Please enter a question');
+                    return;
+                  }
+
+                  // Manually create mailto link
+                  const subject = encodeURIComponent('External Question LangaraHacks');
+                  const body = encodeURIComponent(inputValue);
+                  const mailtoLink = `mailto:langaracompsciclub@gmail.com?subject=${subject}&body=${body}`;
+
+                  window.location.href = mailtoLink;
+                }}
+                className="relative"
+              >
                 <input
                   type="text"
                   placeholder="Ask other questions"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  className="w-full bg-white/10 border-0 rounded-full px-6 py-4 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/20"
+                  className="w-full bg-[#f8f0de]/10 border-0 rounded-full px-6 py-4 text-[#f8f0de] placeholder-[#f8f0de]/50 focus:outline-none focus:ring-2 focus:ring-[#f8f0de]/20"
                   style={{
                     backdropFilter: 'blur(10px)'
                   }}
                 />
-                <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-white text-black px-6 py-2 rounded-full text-sm font-medium hover:bg-white/90 transition-colors">
+                <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#f8f0de] text-black px-6 py-2 rounded-full text-sm font-medium hover:bg-[#f8f0de]/90 transition-colors">
                   Submit
                 </button>
-              </div>
+              </form>
+
             </motion.div>
           </div>
 
@@ -80,18 +97,18 @@ export const FAQSection = () => {
               className="space-y-0"
             >
               {faqs.map((faq, index) => (
-                <div key={index} className="border-b border-white/20">
+                <div key={index} className="border-b border-[#f8f0de]/20">
                   {/* Question */}
                   <motion.button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
                     className="w-full text-left py-6 flex items-center justify-between group"
-                    whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.02)' }}
+                    whileHover={{ backgroundColor: 'rgba(248, 240, 222, 0.02)' }}
                   >
-                    <span className="text-white text-lg font-medium pr-4">
+                    <span className="text-[#f8f0de] text-lg font-medium pr-4">
                       {faq.question}
                     </span>
-                    
-                    <div 
+
+                    <div
                       className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center border"
                       style={{
                         borderColor: 'rgb(111, 8, 14)',
@@ -102,10 +119,10 @@ export const FAQSection = () => {
                         animate={{ rotate: openIndex === index ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <ChevronDown 
-                          className="w-3 h-3" 
+                        <ChevronDown
+                          className="w-3 h-3"
                           style={{
-                            color: openIndex === index ? 'white' : 'rgb(111, 8, 14)'
+                            color: openIndex === index ? '#f8f0de' : 'rgb(111, 8, 14)'
                           }}
                         />
                       </motion.div>
@@ -119,14 +136,14 @@ export const FAQSection = () => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ 
+                        transition={{
                           duration: 0.3,
                           ease: [0.04, 0.62, 0.23, 0.98]
                         }}
                         className="overflow-hidden"
                       >
                         <div className="pb-6">
-                          <p className="text-white/70 leading-relaxed">
+                          <p className="text-[#f8f0de]/70 leading-relaxed">
                             {faq.answer}
                           </p>
                         </div>

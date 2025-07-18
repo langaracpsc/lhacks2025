@@ -39,7 +39,7 @@ function App() {
   if (isLoading) {
     return (
       <div className="bg-lh-dark min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+        <div className="w-8 h-8 border-2 border-[#f8f0de]/30 border-t-[#f8f0de] rounded-full animate-spin"></div>
       </div>
     )
   }
@@ -52,7 +52,7 @@ function App() {
         <main className="bg-lh-dark min-h-screen flex flex-col justify-between gap-20">
           <Navigation />
           <HeroSection />
-          <MainContent />
+    <MainContent />
           <AnimatedSection>
             <AboutSection />
           </AnimatedSection>

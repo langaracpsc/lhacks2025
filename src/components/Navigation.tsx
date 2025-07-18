@@ -18,7 +18,7 @@ export const Navigation = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-lh-dark/95 backdrop-blur-sm"
     >
       <div className="container px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex pl-10 pt-10 items-center justify-between h-20">
           {/* Desktop Navigation - Left aligned */}
           <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item, index) => (
@@ -31,8 +31,8 @@ export const Navigation = () => {
                 whileHover={{ 
                   scale: 1.1,
                   y: -2,
-                  color: 'rgba(245, 245, 245, 1)',
-                  textShadow: '0px 0px 8px rgba(245, 245, 245, 0.5)'
+                  color: '#f8f0de',
+                  textShadow: '0px 0px 8px rgba(248, 240, 222, 0.5)'
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="text-[18px] font-bold transition-all duration-300 relative cursor-pointer"
@@ -44,7 +44,7 @@ export const Navigation = () => {
                 {item.label}
                 {/* Animated underline */}
                 <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-white"
+                  className="absolute bottom-0 left-0 h-0.5 bg-[#f8f0de]"
                   initial={{ width: 0 }}
                   whileHover={{ width: '100%' }}
                   transition={{ duration: 0.15, ease: 'easeInOut' }}
@@ -70,7 +70,7 @@ export const Navigation = () => {
               {/* Simple white hamburger lines like in the image */}
               <div className="relative w-6 h-4 ">
                 <motion.div
-                  className="absolute w-6 h-0.5 bg-white rounded-full"
+                  className="absolute w-6 h-0.5 bg-[#f8f0de] rounded-full"
                   style={{ top: '0px' }}
                   animate={{
                     rotate: isMenuOpen ? 45 : 0,
@@ -79,7 +79,7 @@ export const Navigation = () => {
                   transition={{ duration: 0.3 }}
                 />
                 <motion.div
-                  className="absolute w-6 h-0.5 bg-white rounded-full"
+                  className="absolute w-6 h-0.5 bg-[#f8f0de] rounded-full"
                   style={{ top: '6px' }}
                   animate={{
                     opacity: isMenuOpen ? 0 : 1
@@ -87,7 +87,7 @@ export const Navigation = () => {
                   transition={{ duration: 0.3 }}
                 />
                 <motion.div
-                  className="absolute w-6 h-0.5 bg-white rounded-full"
+                  className="absolute w-6 h-0.5 bg-[#f8f0de] rounded-full"
                   style={{ top: '12px' }}
                   animate={{
                     rotate: isMenuOpen ? -45 : 0,
@@ -124,8 +124,8 @@ export const Navigation = () => {
                 whileHover={{ 
                   x: 15,
                   scale: 1.05,
-                  color: 'rgba(245, 245, 245, 1)',
-                  textShadow: '0px 0px 8px rgba(245, 245, 245, 0.5)'
+                  color: '#f8f0de',
+                  textShadow: '0px 0px 8px rgba(248, 240, 222, 0.5)'
                 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsMenuOpen(false)}

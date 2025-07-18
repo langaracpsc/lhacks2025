@@ -1,57 +1,84 @@
 import { motion } from 'motion/react'
 import { Mail, Instagram } from 'lucide-react'
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel'
+import { useEffect, useState } from 'react'
+import AutoScroll from "embla-carousel-auto-scroll"
+
+
 
 export const Footer = () => {
+  const [api, setApi] = useState<CarouselApi>()
+
+  
   const socialLinks = [
     { icon: Instagram, href: "#", label: "Instagram" }
   ]
 
   // Team members data - duplicated for seamless loop
-  const teamMembers = [
-    {
-      name: "Name Placeholder",
-      position: "Position Placeholder",
-      image: "placeholder"
-    },
-    {
-      name: "Name Placeholder",
-      position: "Position Placeholder",
-      image: "placeholder"
-    },
-    {
-      name: "Name Placeholder",
-      position: "Position Placeholder",
-      image: "placeholder"
-    },
-    {
-      name: "Name Placeholder",
-      position: "Position Placeholder",
-      image: "placeholder"
-    },
-    {
-      name: "Name Placeholder",
-      position: "Position Placeholder",
-      image: "placeholder"
-    },
-    {
-      name: "Name Placeholder",
-      position: "Position Placeholder",
-      image: "placeholder"
-    },
-    {
-      name: "Name Placeholder",
-      position: "Position Placeholder",
-      image: "placeholder"
-    },
-    {
-      name: "Name Placeholder",
-      position: "Position Placeholder",
-      image: "placeholder"
-    }
-  ]
+    const teamMembers = [
+      {
+        name: "April Ternida",
+        position: "President",
+        image: "/April.JPG"
+      },
+      {
+        name: "Wendy Surya",
+        position: "Vice President",
+        image: "/Wendy.JPG"
+      },
+      {
+        name: "Rishit Singh",
+        position: "Tech Lead",
+        image: "/Rishit.JPG"
+      },
+      {
+        name: "Felipe Barros",
+        position: "Developer",
+        image: "/Felipe.JPG"
+      },
+      {
+        name: "Shayan",
+        position: "Director of Events",
+        image: "/Shayuun.JPG"
+      },
+      {
+        name: "Abigail Chuma",
+        position: "Director of Events",
+        image: "/Abi.JPG"
+      },
+      {
+        name: "Dennis Yong",
+        position: "Events Team",
+        image: "/Dennis.JPG"
+      },
+      {
+        name: "Kobe Michael",
+        position: "Media Team",
+        image: "/Kobe.JPG"
+      },
+      {
+        name: "Rey Shahir",
+        position: "Media Team",
+        image: "/Rey.JPG"
+      },
+      {
+        name: "Grace Dong",
+        position: "Media Team",
+        image: "/Grace.JPG"
+      }
+    ]
 
-  // Duplicate the array for seamless infinite scroll
-  const duplicatedMembers = [...teamMembers, ...teamMembers]
+  // Single array for seamless infinite scroll
+
+  useEffect(() => {
+    if (!api) return
+
+    const interval = setInterval(() => {
+      api.scrollNext()
+    }, 3000) // Auto-scroll every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [api])
 
   return (
     <footer className="bg-lh-dark py-20">
@@ -62,75 +89,87 @@ export const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-[60px] font-bold text-white text-center mb-16 leading-tight px-4"
+          className="text-[60px] font-bold text-[#f8f0de] text-center mb-16 leading-tight px-4"
         >
           LANGARA HACKS 2025<br />
           HACKATHON COMMITTEE
         </motion.h2>
 
-        {/* Team Members Continuous Scroll */}
-        <div className="relative mb-16 overflow-hidden w-full">
-          <motion.div
-            className="flex gap-4 md:gap-6"
-            animate={{
-              x: [0, -100 + '%']
+                {/* Team Members Carousel */}
+        <div className="relative mb-16 w-full">
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+
             }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+            plugins={[
+              AutoScroll({
+                speed: 2,
+                startDelay: 1000,
+                direction: "forward",
+                stopOnInteraction: false,
+                stopOnMouseEnter: false,
+                playOnInit: true,
+              })
+            ]}
+            setApi={setApi}
+            className="w-full"
           >
-            {duplicatedMembers.map((member, index) => (
-              <div
-                key={index}
-                className="text-center flex-shrink-0 w-[200px] md:w-[240px]"
-              >
-                {/* Team Member Card */}
-                <div
-                  className="w-full h-[288px] rounded-[13px] mb-4  p-5 flex items-end justify-center text-white/60 text-sm"
-                  style={{
-                    backgroundColor: 'rgb(46, 46, 46)'
-                  }}
-                >
-
-                  <div>
-                    <h4 className="text-white text-lg font-medium mb-1">
-                      {member.name}
-                    </h4>
-                    <p className="text-white/80 text-sm">
-                      {member.position}
-                    </p>
-
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {teamMembers.map((member, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-[200px] md:basis-[240px]">
+                  <div className="text-center">
+                    {/* Team Member Card */}
+                    <div
+                      className="w-full h-[288px] rounded-[13px] mb-4 overflow-hidden relative"
+                      style={{
+                        backgroundColor: 'rgb(46, 46, 46)'
+                      }}
+                    >
+                      {/* Member Image */}
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                      
+                      {/* Overlay with name and position */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-5">
+                        <h4 className="text-[#f8f0de] text-lg font-medium mb-1">
+                          {member.name}
+                        </h4>
+                        <p className="text-[#f8f0de]/80 text-sm">
+                          {member.position}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-
-                {/* Name & Position */}
-
-              </div>
-            ))}
-          </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
 
         {/* Footer Bottom */}
-        <motion.div
+            <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
           className="flex justify-between items-center px-4"
-        >
+            >
           {/* Social Handle */}
-          <span className="text-white text-sm">
-            @langaracpsc
-          </span>
+                      <span className="text-[#f8f0de] text-sm">
+                @langaracpsc
+              </span>
 
-          {/* Social Links */}
+            {/* Social Links */}
           <div className="flex space-x-6">
-            {socialLinks.map((link, index) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -139,24 +178,24 @@ export const Footer = () => {
                   delay: index * 0.02
                 }}
                 viewport={{ once: true }}
-                whileHover={{
+                  whileHover={{ 
                   scale: 1.3,
                   y: -4,
                   rotate: 8,
                   transition: { duration: 0.08, ease: "easeOut" }
-                }}
+                  }}
                 whileTap={{
                   scale: 0.85,
                   transition: { duration: 0.03 }
                 }}
-                className="text-white/80 hover:text-white transition-all duration-75 cursor-pointer"
-                aria-label={link.label}
-              >
+                className="text-[#f8f0de]/80 hover:text-[#f8f0de] transition-all duration-75 cursor-pointer"
+                  aria-label={link.label}
+                >
                 <link.icon className="w-8 h-8" strokeWidth={1.5} />
-              </motion.a>
-            ))}
+                </motion.a>
+              ))}
           </div>
-        </motion.div>
+          </motion.div>
       </div>
     </footer>
   )

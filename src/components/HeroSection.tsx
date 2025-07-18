@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { MainContent } from './MainContent'
+import { useNavigate } from 'react-router-dom'
 
 export const HeroSection = () => {
+  const navigate = useNavigate()
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-lh-dark pt-16">
       {/* Background animated elements */}
@@ -31,10 +33,11 @@ export const HeroSection = () => {
           <img src="/logo.png" alt="Langara Hacks" width={480} height={480} />
 
           <button 
-              className="text-white cursor-pointer text-[20px] rounded-[40px] border border-[#6F0510] bg-[#6F0510] hover:bg-[#6F0510]/90 px-21 py-3 transition-all"
+            onClick={() => navigate('/applicants')}
+              className="text-[#f8f0de] cursor-pointer text-[20px] rounded-[40px] border border-[#6F0510] bg-[#6F0510] hover:bg-[#6F0510]/90 px-21 py-3 transition-all"
           >
               Apply Now
-          </button>
+            </button>
         </motion.div>
 
       

@@ -42,7 +42,7 @@ export const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-[80px] font-bold text-white mb-8 leading-tight tracking-wider"
+            className="text-[80px] font-bold text-[#f8f0de] mb-8 leading-tight tracking-wider"
           >
             THIS YEAR
           </motion.h2>
@@ -53,27 +53,27 @@ export const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-white text-2xl mb-12 font-light tracking-wide"
+            className="text-[#f8f0de] text-2xl mb-12 font-light tracking-wide"
           >
             SEPTEMBER 20 - 21 | 48 HOURS | LIMITED SPOTS
           </motion.p>
-          
+
           {/* More Info Button */}
-          <motion.div
+                    <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
+                      viewport={{ once: true }}
+                    >
             <Button 
               variant="outline"
-              className="border-[#6F0510] cursor-pointer text-[#6F0510] bg-transparent hover:bg-[#6F0510] hover:text-white rounded-full px-8 py-3 text-lg font-medium transition-all"
-            >
+              className="border-[#6F0510] cursor-pointer text-[#f8f0de] bg-transparent hover:bg-[#6F0510] hover:text-[#f8f0de] rounded-full px-8 py-3 text-lg font-medium transition-all"
+                    >
               More info
               <ArrowUpRight className="ml-2 h-5 w-5" />
             </Button>
-          </motion.div>
-        </motion.div>
+                    </motion.div>
+              </motion.div>
       </div>
     </section>
   )
