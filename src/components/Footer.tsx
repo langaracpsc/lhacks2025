@@ -19,52 +19,52 @@ export const Footer = () => {
       {
         name: "April Ternida",
         position: "President",
-        image: "/April.JPG"
+        image: "/April.webp"
       },
       {
         name: "Wendy Surya",
         position: "Vice President",
-        image: "/Wendy.JPG"
+        image: "/Wendy.webp"
       },
       {
         name: "Rishit Singh",
         position: "Tech Lead",
-        image: "/Rishit.JPG"
+        image: "/Rishit.webp"
       },
       {
         name: "Felipe Barros",
         position: "Developer",
-        image: "/Felipe.JPG"
+        image: "/Felipe.webp"
       },
       {
         name: "Shayan",
         position: "Director of Events",
-        image: "/Shayuun.JPG"
+        image: "/Shayuun.webp"
       },
       {
         name: "Abigail Chuma",
         position: "Director of Events",
-        image: "/Abi.JPG"
+        image: "/Abi.webp"
       },
       {
         name: "Dennis Yong",
         position: "Events Team",
-        image: "/Dennis.JPG"
+        image: "/Dennis.webp"
       },
       {
         name: "Kobe Michael",
         position: "Media Team",
-        image: "/Kobe.JPG"
+        image: "/Kobe.webp"
       },
       {
         name: "Rey Shahir",
         position: "Media Team",
-        image: "/Rey.JPG"
+        image: "/Rey.webp"
       },
       {
         name: "Grace Dong",
         position: "Media Team",
-        image: "/Grace.JPG"
+        image: "/Grace.webp"
       }
     ]
 

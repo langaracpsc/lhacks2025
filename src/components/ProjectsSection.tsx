@@ -23,7 +23,7 @@ export const ProjectsSection = () => {
       ],
       buttonText: "View on Devpost",
       imageColor: "rgb(47, 122, 255)",
-      image: "/Podlyze.png",
+      image: "/Podlyze.webp", 
       link: "https://devpost.com/software/podlyze"
     },
     {
@@ -36,7 +36,7 @@ export const ProjectsSection = () => {
         "We used React for the Frontend and Django for the backend. We hosted the backend on AWS. AI was built with OpenAi's GPT-4o-mini model. We used OCR for resume scraping, and Selenium for the Linkedin Info."
       ],
       buttonText: "View on Devpost",
-      image: "/hireHigher.png",
+      image: "/hireHigher.webp",
       link: "https://devpost.com/software/hirehigher"
     },
     {
@@ -49,7 +49,7 @@ export const ProjectsSection = () => {
         "Built with the MERN stack, the app uses Mongoose for database management and JSON Web Tokens with Express for authentication. The backend handles requests to OpenAI’s GPT-3.5-turbo and Polygon.io for real-time stock data. After filtering data, the AI acts as a final layer to choose the most profitable stocks based on various factors. The frontend then displays these results through a user-friendly interface."
       ],
       buttonText: "View on Devpost",
-      image: "/finaceadvisor.jpg",
+      image: "/finaceadvisor.webp",
       link: "https://devpost.com/software/hacksbricsteam"
     },
     {
@@ -62,7 +62,7 @@ export const ProjectsSection = () => {
         "We developed a user-friendly frontend that lets users drag and drop or paste a YouTube URL. Once the link is received, the app uses YouTube-DLP to download the audio and video content. It then applies MDX-Net, a powerful AI model for audio source separation, to isolate and extract the instrumental track. At the same time, the app uses the Genius API to identify and fetch the lyrics based on the song. Finally, the interface plays the instrumental version while displaying the synchronized lyrics, creating an intuitive and immersive karaoke experience."
       ],
       buttonText: "View on Devpost",
-      image: "/karaoke.jpeg",
+      image: "/karaoke.webp",
       link: "https://devpost.com/software/karaoke-app"
     },
   ]
@@ -216,7 +216,7 @@ export const ProjectsSection = () => {
                 backgroundColor: 'rgb(111, 8, 14)',
                 color: '#f8f0de',
                 position: 'absolute',
-                top: '50%',
+                top: '300px',
                 transform: 'translateY(-50%)',
                 zIndex: 30
               }}
@@ -240,7 +240,7 @@ export const ProjectsSection = () => {
                 backgroundColor: 'rgb(111, 8, 14)',
                 color: '#f8f0de',
                 position: 'absolute',
-                top: '50%',
+                top: '300px',
                 transform: 'translateY(-50%)',
                 zIndex: 30
               }}

@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion'
-import { MainContent } from './MainContent'
 import { useNavigate } from 'react-router-dom'
 
 export const HeroSection = () => {
   const navigate = useNavigate()
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-lh-dark pt-16">
+    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-lh-dark">
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -28,13 +27,15 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          className="mb-32 flex justify-center items-center flex-col" 
+          className="mb-32 flex justify-center items-center flex-col w-full" 
         >
-          <img src="/logo.png" alt="Langara Hacks" width={480} height={480} />
+          <div className="flex justify-center items-center w-full">
+            <img src="/logo.png" alt="Langara Hacks" width={480} height={480} className="mx-auto" />
+          </div>
 
           <button 
             onClick={() => navigate('/applicants')}
-              className="text-[#f8f0de] cursor-pointer text-[20px] rounded-[40px] border border-[#6F0510] bg-[#6F0510] hover:bg-[#6F0510]/90 px-21 py-3 transition-all"
+              className="text-[#f8f0de] cursor-pointer text-[20px] rounded-[40px] border border-[#6F0510] bg-[#6F0510] hover:bg-[#6F0510]/90 px-21 py-3 transition-all mt-8"
           >
               Apply Now
             </button>

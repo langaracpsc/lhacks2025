@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 
-import img1 from '/rand1.png'
-import img2 from '/rand2.png'
-import img3 from '/rand3.png'
-import img4 from '/rand4.png'
-import img5 from '/rand5.png'
-import img6 from '/rand6.png'
-import img7 from '/rand7.jpg'
-import img8 from '/rand8.jpg'
-import img9 from '/rand9.jpg'
+import img1 from '/rand1.webp'
+import img2 from '/rand2.webp'
+import img3 from '/rand3.webp'
+import img4 from '/rand4.webp'
+import img5 from '/rand5.webp'
+import img6 from '/rand6.webp'
+import img7 from '/rand7.webp'
+import img8 from '/rand8.webp'
+import img9 from '/rand9.webp'
 import img10 from '/rand10.webp'
 import img11 from '/rand11.webp'
 import img12 from '/rand12.webp'
@@ -74,7 +74,7 @@ const MainContent = () => {
 
 
   return (
-    <div className="w-full pt-30 gap-16 px-4 relative h-[100vh]">
+    <div className="w-full pt-30 gap-16 px-4 relative h-[150vh]">
       {/* Top dotted pattern */}
       <div className="absolute top-0 left-0 w-[390px] h-[60px]" style={{
         backgroundImage: `radial-gradient(circle, rgba(248, 240, 222, 0.3) 1px, transparent 1px)`,
@@ -88,11 +88,11 @@ const MainContent = () => {
           className="absolute left-[7%] top-[25%] w-[24%] h-[63%] rounded-[13px] overflow-hidden"
           style={{ backgroundColor: 'rgb(46, 46, 46)' }}
         >
-          {leftRandomImages[leftImageIndex] && (
+          { leftRandomImages[leftImageIndex] && (
             <img 
               src={leftRandomImages[leftImageIndex]} 
               alt="Random image 1" 
-              className={`w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
+              className={`w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
                 leftFade ? 'opacity-100' : 'opacity-0'
               }`}
               loading="lazy"
@@ -106,7 +106,7 @@ const MainContent = () => {
                       return next >= leftRandomImages.length ? 0 : next
                     })
                     setLeftFade(true)
-                  }, 300) // Longer background visibility for slower transitions
+                  }, 400) // Longer background visibility for slower transitions
                 }, 3000)
               }}
             />
@@ -137,7 +137,7 @@ const MainContent = () => {
                     })
                     setMiddleFade(true)
                   }, 400) // Longer background visibility for slower transitions
-                }, 3000)
+                }, 4000)
               }}
             />
           )}
@@ -151,11 +151,11 @@ const MainContent = () => {
             boxShadow: '0px 4px 22.7px rgba(0, 0, 0, 0.25)'
           }}
         >
-          {rightRandomImages[rightImageIndex] && (
+          { rightRandomImages[rightImageIndex] && (
             <img 
               src={rightRandomImages[rightImageIndex]} 
               alt="Random image 3" 
-              className={`w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
+              className={`w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
                 rightFade ? 'opacity-100' : 'opacity-0'
               }`}
               loading="lazy"
@@ -169,8 +169,8 @@ const MainContent = () => {
                       return next >= rightRandomImages.length ? 0 : next
                     })
                     setRightFade(true)
-                  }, 300) // Longer background visibility for slower transitions
-                }, 3000)
+                  }, 400) // Longer background visibility for slower transitions
+                }, 5000)
               }}
             />
           )}
@@ -194,7 +194,10 @@ const MainContent = () => {
         transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
         className=" text-[#f8f0de]/80 text-center relative z-20  absolute text-xl bottom-20 max-w-3xl mx-auto text-center leading-relaxed"
       >
-        lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis leo eu aenean sed diam urna tempor. ulvinar vivamus fringilla lacus nec metusbibendum
+        LangaraHacks is the annual hackathon hosted by the Langara Computer Science Club dedicated to empowering students through innovation, creativity, and hands-on experience. Over one exciting weekend, participants team up to build real-world tech solutions, from web apps and games to tools that solve everyday problems.
+        <br />
+        <br />
+More than just a competition, LangaraHacks is a launchpad for learning, growth, and connection. It’s a beginner-friendly, high-energy environment where you can explore new technologies, attend hands-on workshops, get guidance from industry mentors, and collaborate with a vibrant community of creators.
       </motion.p>
 
       {/* Bottom-right dotted pattern */}
