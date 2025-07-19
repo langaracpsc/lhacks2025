@@ -243,7 +243,7 @@ More than just a competition, LangaraHacks is a launchpad for learning, growth, 
       </motion.p>
 
       {/* Bottom-right dotted pattern */}
-      <div className="absolute top-[1400px] sm:top-[1300px] md:top-[1200px] lg:top-[100px] bottom-0 right-0 w-[390px] h-[60px] hidden sm:block" style={{
+      <div className="absolute top-[1400px] sm:top-[1300px] md:top-[1200px] lg:top-[1100px] bottom-0 right-0 w-[390px] h-[60px] hidden sm:block" style={{
         backgroundImage: `radial-gradient(circle, rgb(248, 240, 222) 1px, transparent 1px)`,
         backgroundSize: '24px 24px'
       }} />
