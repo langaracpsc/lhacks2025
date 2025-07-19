@@ -37,14 +37,23 @@ const MainContent = () => {
     img12
   ]
 
+  // Single array for mobile - combines all images
+  const mobileRandomImages = [
+    img1, img2, img3, img4, img5,
+    img6, img7, img8, img9,
+    img10, img11, img12
+  ]
+
   const [leftImageIndex, setLeftImageIndex] = useState(0)
   const [middleImageIndex, setMiddleImageIndex] = useState(0)
   const [rightImageIndex, setRightImageIndex] = useState(0)
+  const [mobileImageIndex, setMobileImageIndex] = useState(0)
   
   // Animation states for fade effects
   const [leftFade, setLeftFade] = useState(true)
   const [middleFade, setMiddleFade] = useState(true)
   const [rightFade, setRightFade] = useState(true)
+  const [mobileFade, setMobileFade] = useState(true)
   
 
 
@@ -58,17 +67,20 @@ const MainContent = () => {
     setLeftImageIndex(getRandomIndex(leftRandomImages.length))
     setMiddleImageIndex(getRandomIndex(middleRandomImages.length))
     setRightImageIndex(getRandomIndex(rightRandomImages.length))
+    setMobileImageIndex(getRandomIndex(mobileRandomImages.length))
     
     // Initialize fade states
     setLeftFade(false)
     setMiddleFade(false)
     setRightFade(false)
+    setMobileFade(false)
     
     // Trigger fade in after a short delay
     setTimeout(() => {
       setLeftFade(true)
       setMiddleFade(true)
       setRightFade(true)
+      setMobileFade(true)
     }, 100)
   }, [])
 
@@ -83,9 +95,39 @@ const MainContent = () => {
 
       {/* Image placeholders layout */}
       <div className="relative w-full h-[600px] flex items-center justify-center">
-                {/* Left image - Rectangle 12 */}
+        {/* Mobile Single Image */}
+        <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 top-[10%] w-[80%] h-[60%] rounded-[13px] overflow-hidden"
+          style={{ backgroundColor: 'rgb(46, 46, 46)' }}
+        >
+          { mobileRandomImages[mobileImageIndex] && (
+            <img 
+              src={mobileRandomImages[mobileImageIndex]} 
+              alt="Random mobile image" 
+              className={`w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
+                mobileFade ? 'opacity-100' : 'opacity-0'
+              }`}
+              loading="lazy"
+              onLoad={() => {
+                setMobileFade(true)
+                setTimeout(() => {
+                  setMobileFade(false)
+                  setTimeout(() => {
+                    setMobileImageIndex((prev: number) => {
+                      const next = prev + 1;
+                      return next >= mobileRandomImages.length ? 0 : next
+                    })
+                    setMobileFade(true)
+                  }, 400) // Longer background visibility for slower transitions
+                }, 4000)
+              }}
+            />
+          )}
+        </div>
+
+        {/* Desktop Images */}
+        {/* Left image - Rectangle 12 */}
         <div 
-          className="absolute left-[7%] top-[25%] w-[24%] h-[63%] rounded-[13px] overflow-hidden"
+          className="hidden md:block absolute left-[7%] top-[25%] w-[24%] h-[63%] rounded-[13px] overflow-hidden"
           style={{ backgroundColor: 'rgb(46, 46, 46)' }}
         >
           { leftRandomImages[leftImageIndex] && (
@@ -115,7 +157,7 @@ const MainContent = () => {
         
                 {/* Center image - Rectangle 13 */}
         <div 
-          className="absolute left-1/2 transform -translate-x-1/2 top-[-5%] w-[32%] h-[90%] rounded-[13px] overflow-hidden"
+          className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-[-5%] w-[32%] h-[90%] rounded-[13px] overflow-hidden"
           style={{ backgroundColor: 'rgb(46, 46, 46)' }}
         >
           { middleRandomImages[middleImageIndex] && (
@@ -145,7 +187,7 @@ const MainContent = () => {
         
                 {/* Right image - Rectangle 14 with blue border */}
         <div 
-          className="absolute right-[7%] top-[10%] w-[24%] h-[88%] rounded-[13px] overflow-hidden"
+          className="hidden md:block absolute right-[7%] top-[10%] w-[24%] h-[88%] rounded-[13px] overflow-hidden"
           style={{ 
             backgroundColor: 'rgb(46, 46, 46)',
             boxShadow: '0px 4px 22.7px rgba(0, 0, 0, 0.25)'

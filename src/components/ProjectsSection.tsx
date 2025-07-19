@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import { 
   Carousel,
   CarouselContent,
@@ -10,6 +11,20 @@ import {
 } from '@/components/ui/carousel'
 
 export const ProjectsSection = () => {
+  const [expandedProject, setExpandedProject] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 1029)
+    }
+    
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
   // Sample project data - you can expand this
   const projects = [
     {
@@ -67,6 +82,12 @@ export const ProjectsSection = () => {
     },
   ]
 
+  const handleProjectClick = (projectId: number) => {
+    if (isMobile) {
+      setExpandedProject(expandedProject === projectId ? null : projectId)
+    }
+  }
+
   return (
     <section id="projects" className="py-20 bg-lh-dark relative overflow-hidden w-full">
       <div className="w-full flex flex-col items-center justify-center">
@@ -99,14 +120,21 @@ export const ProjectsSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="rounded-lg overflow-hidden group relative"
+                    className={`rounded-lg overflow-hidden group relative transition-all duration-500 ease-in-out ${
+                      isMobile ? 'cursor-pointer' : ''
+                    }`}
                     style={{
                       backgroundColor: 'rgb(220, 220, 218)',
                       border: '1px solid rgba(168, 157, 157, 0.74)'
                     }}
+                    onClick={() => handleProjectClick(project.id)}
                         >
                     {/* Hover Image Dropdown */}
-                    <div className="absolute bottom-0 left-0  right-0 h-0 group-hover:h-96 transition-all duration-500 ease-in-out overflow-hidden z-10 p-4">
+                    <div className={`absolute bottom-0 left-0 right-0 h-0 overflow-hidden z-10 p-4 transition-all duration-500 ease-in-out ${
+                      isMobile 
+                        ? (expandedProject === project.id ? 'h-96' : 'h-0')
+                        : 'group-hover:h-96'
+                    }`}>
                       <img 
                           src={project.image} 
                           alt={project.name} 
@@ -114,7 +142,11 @@ export const ProjectsSection = () => {
                         />
                     </div>
                     
-                    <div className="grid grid-cols-1 min-h-[600px] relative z-20 group-hover:pb-96 transition-all duration-500 ease-in-out">
+                    <div className={`grid grid-cols-1 min-h-[600px] relative z-20 transition-all duration-500 ease-in-out ${
+                      isMobile 
+                        ? (expandedProject === project.id ? 'pb-96' : 'pb-0')
+                        : 'group-hover:pb-96'
+                    }`}>
                       {/* Top Content */}
                       <div className="p-12 flex flex-col justify-center">
                         {/* Title */}
@@ -182,7 +214,10 @@ export const ProjectsSection = () => {
                 viewport={{ once: true }}
                 >
                   <Button 
-                   onClick={() => window.open(project.link, '_blank')}
+                   onClick={(e) => {
+                     e.stopPropagation()
+                     window.open(project.link, '_blank')
+                   }}
                             className="rounded-[40px] px-6 py-3 text-base transition-all"
                             style={{
                               backgroundColor: 'transparent',
@@ -211,7 +246,7 @@ export const ProjectsSection = () => {
             
             {/* Custom Navigation Buttons */}
             <CarouselPrevious 
-              className="w-12 h-12 left-4 border-0 cursor-pointer fixed-nav-button"
+              className="w-12 h-12 left-4 border-0 cursor-pointer fixed-nav-button hidden lg:flex"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
                 color: '#f8f0de',
@@ -235,7 +270,7 @@ export const ProjectsSection = () => {
               </svg>
             </CarouselPrevious>
             <CarouselNext 
-              className="w-12 h-12 right-4 border-0 cursor-pointer fixed-nav-button"
+              className="w-12 h-12 right-4 border-0 cursor-pointer fixed-nav-button hidden lg:flex"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
                 color: '#f8f0de',

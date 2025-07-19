@@ -11,7 +11,7 @@ export const Footer = () => {
 
   
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" }
+    { icon: Instagram, href: "https://www.instagram.com/langaracpsc/", label: "Instagram" }
   ]
 
   // Team members data - duplicated for seamless loop
@@ -65,7 +65,13 @@ export const Footer = () => {
         name: "Grace Dong",
         position: "Media Team",
         image: "/Grace.webp"
-      }
+
+      },{
+        name: "Jecht Alfonso",
+        position: "Events Team",
+        image: "/JechGood.webp"
+      },
+     
     ]
 
   // Single array for seamless infinite scroll

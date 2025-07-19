@@ -46,7 +46,7 @@ export const SplashScreen = ({ onComplete }: SplashScreenProps) => {
           
          
           <img 
-            src="public/LogoSplash.png" 
+            src="/LogoSplash.png" 
             alt="Langara Hacks Logo" 
             className="w-full h-full object-contain"
           />
