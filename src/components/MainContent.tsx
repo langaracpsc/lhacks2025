@@ -88,8 +88,8 @@ const MainContent = () => {
   return (
     <div className="w-full pt-30 gap-16 px-4 relative h-[150vh]">
       {/* Top dotted pattern */}
-      <div className="absolute top-0 left-0 w-[390px] h-[60px]" style={{
-        backgroundImage: `radial-gradient(circle, rgba(248, 240, 222, 0.3) 1px, transparent 1px)`,
+      <div className="absolute sm:block hidden top-0 left-0 w-[390px] h-[60px]" style={{
+        backgroundImage: `radial-gradient(circle, rgb(248, 240, 222) 1px, transparent 1px)`,
         backgroundSize: '24px 24px'
       }} />
 
@@ -224,7 +224,7 @@ const MainContent = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
-        className="tracking-tighter absolute bottom-20 text-[80px]  text-[#f8f0de] mb-6 leading-tight tracking-wider text-center relative z-20 "
+        className="tracking-tighter absolute bottom-20 text-[80px] font-sm-bold  text-[#f8f0de] mb-6 leading-tight text-center relative z-20 "
       >
         LANGARA HACKS
       </motion.h1>
@@ -243,8 +243,8 @@ More than just a competition, LangaraHacks is a launchpad for learning, growth, 
       </motion.p>
 
       {/* Bottom-right dotted pattern */}
-      <div className="absolute bottom-0 right-0 w-[390px] h-[60px]" style={{
-        backgroundImage: `radial-gradient(circle, rgba(248, 240, 222, 0.3) 1px, transparent 1px)`,
+      <div className="absolute top-[1400px] sm:top-[1300px] md:top-[1200px] lg:top-[100px] bottom-0 right-0 w-[390px] h-[60px] hidden sm:block" style={{
+        backgroundImage: `radial-gradient(circle, rgb(248, 240, 222) 1px, transparent 1px)`,
         backgroundSize: '24px 24px'
       }} />
     </div>
