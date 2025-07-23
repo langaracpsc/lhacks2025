@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="bg-lh-dark">
+    <section id="about" className="bg-lh-dark  max-xl:pt-[150px] xl:pt-[50px]">
       <div className="container   mx-auto px-4">
         {/* Main Container with rounded rectangle matching Figma specs */}
         <motion.div
