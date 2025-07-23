@@ -28,7 +28,7 @@ const Applicants = () => {
           {/* Apply as Participant Button */}
           <button
             onClick={() => {
-              // Handle participant application
+             window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSev3eZezFcjQwJfAYwwXgkKLZZwUqvyxfs4KMNuBuJOVi5qBg/viewform'
               console.log('Apply as Participant clicked')
             }}
             className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f8f0de]/10 to-[#f8f0de]/5 border border-[#f8f0de]/20 hover:border-[#f8f0de]/40 transition-all duration-300 hover:scale-105"
@@ -55,7 +55,7 @@ const Applicants = () => {
           {/* Apply as Mentor Button */}
           <button
             onClick={() => {
-              // Handle mentor application
+              window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSfOPi_jg5OJe8Uv-3pbvS-iwCYwvgtEoBtm_I12gGxy2PZ2mg/viewform'
               console.log('Apply as Mentor clicked')
             }}
             className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#f8f0de]/10 to-[#f8f0de]/5 border border-[#f8f0de]/20 hover:border-[#f8f0de]/40 transition-all duration-300 hover:scale-105"
