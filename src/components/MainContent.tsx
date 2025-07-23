@@ -86,7 +86,7 @@ const MainContent = () => {
 
 
   return (
-    <div className="w-full pt-30 gap-16 px-4 relative h-[150vh]">
+    <div className="w-full pt-30  gap-16 px-4 relative h-[400vh] 2xl:h-[100vh] xl:h-[105vh] lg:h-[110vh] md:h-[130vh] sm:h-[140vh]">
       {/* Top dotted pattern */}
       <div className="absolute sm:block hidden top-0 left-0 w-[390px] h-[60px]" style={{
         backgroundImage: `radial-gradient(circle, rgb(248, 240, 222) 1px, transparent 1px)`,
