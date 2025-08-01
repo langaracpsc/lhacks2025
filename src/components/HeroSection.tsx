@@ -2,7 +2,8 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
 export const HeroSection = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-lh-dark">
       {/* Background animated elements */}

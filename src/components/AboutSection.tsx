@@ -42,7 +42,8 @@ export const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-[80px] font-bold text-[#f8f0de] mb-8 leading-tight tracking-wider"
+            className="text-[80px] font-bold text-[#f8f0de] mb-8 leading-tight tracking-wider text-center"
+            style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}
           >
             THIS YEAR
           </motion.h2>

@@ -1,90 +1,74 @@
 import { motion } from 'motion/react'
-import { Mail, Instagram } from 'lucide-react'
-import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel'
-import { useEffect, useState } from 'react'
+import { Instagram } from 'lucide-react'
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
+
 import AutoScroll from "embla-carousel-auto-scroll"
 
 
-
 export const Footer = () => {
-  const [api, setApi] = useState<CarouselApi>()
-
-  
   const socialLinks = [
     { icon: Instagram, href: "https://www.instagram.com/langaracpsc/", label: "Instagram" }
   ]
 
   // Team members data - duplicated for seamless loop
-    const teamMembers = [
-      {
-        name: "April Ternida",
-        position: "President",
-        image: "/April.webp"
-      },
-      {
-        name: "Wendy Surya",
-        position: "Vice President",
-        image: "/Wendy.webp"
-      },
-      {
-        name: "Rishit Singh",
-        position: "Tech Lead",
-        image: "/Rishit.webp"
-      },
-      {
-        name: "Felipe Barros",
-        position: "Developer",
-        image: "/Felipe.webp"
-      },
-      {
-        name: "Shayan",
-        position: "Director of Events",
-        image: "/Shayuun.webp"
-      },
-      {
-        name: "Abigail Chuma",
-        position: "Director of Events",
-        image: "/Abi.webp"
-      },
-      {
-        name: "Dennis Yong",
-        position: "Events Team",
-        image: "/Dennis.webp"
-      },
-      {
-        name: "Kobe Michael",
-        position: "Media Team",
-        image: "/Kobe.webp"
-      },
-      {
-        name: "Rey Shahir",
-        position: "Media Team",
-        image: "/Rey.webp"
-      },
-      {
-        name: "Grace Dong",
-        position: "Media Team",
-        image: "/Grace.webp"
+  const teamMembers = [
+    {
+      name: "April Ternida",
+      position: "President",
+      image: "/April.webp"
+    },
+    {
+      name: "Wendy Surya",
+      position: "Vice President",
+      image: "/Wendy.webp"
+    },
+    {
+      name: "Rishit Singh",
+      position: "Tech Lead",
+      image: "/Rishit.webp"
+    },
+    {
+      name: "Felipe Barros",
+      position: "Developer",
+      image: "/Felipe.webp"
+    },
+    {
+      name: "Shayaan Hassan",
+      position: "Director of Events",
+      image: "/Shayuun.webp"
+    },
+    {
+      name: "Abi Chuma",
+      position: "Director of Events",
+      image: "/Abi.webp"
+    },
+    {
+      name: "Dennis Yong",
+      position: "Events Team",
+      image: "/Dennis.webp"
+    },
+    {
+      name: "Kobe Michael",
+      position: "Media Team",
+      image: "/Kobe.webp"
+    },
+    {
+      name: "Rey Shahir",
+      position: "Media Team",
+      image: "/Rey.webp"
+    },
+    {
+      name: "Grace Dong",
+      position: "Media Team",
+      image: "/Grace.webp"
 
-      },{
-        name: "Jecht Alfonso",
-        position: "Events Team",
-        image: "/JechGood.webp"
-      },
-     
-    ]
+    }, {
+      name: "Jecht Alfonso",
+      position: "Events Team",
+      image: "/JechGood.webp"
+    },
 
-  // Single array for seamless infinite scroll
-
-  useEffect(() => {
-    if (!api) return
-
-    const interval = setInterval(() => {
-      api.scrollNext()
-    }, 3000) // Auto-scroll every 3 seconds
-
-    return () => clearInterval(interval)
-  }, [api])
+  ]
 
   return (
     <footer className="bg-lh-dark py-20">
@@ -96,30 +80,25 @@ export const Footer = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
           className="text-[60px] font-bold text-[#f8f0de] text-center mb-16 leading-tight px-4"
+          style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}
         >
-          LANGARA HACKS 2025<br />
-          HACKATHON COMMITTEE
+          THE TEAM
         </motion.h2>
 
-                {/* Team Members Carousel */}
+        {/* Team Members Carousel */}
         <div className="relative mb-16 w-full">
           <Carousel
             opts={{
               align: "center",
               loop: true,
-
             }}
             plugins={[
               AutoScroll({
-                speed: 2,
-                startDelay: 1000,
+                speed: 1,
                 direction: "forward",
-                stopOnInteraction: false,
-                stopOnMouseEnter: false,
-                playOnInit: true,
+                stopOnInteraction: false, 
               })
             ]}
-            setApi={setApi}
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
@@ -139,7 +118,7 @@ export const Footer = () => {
                         alt={member.name}
                         className="w-full h-full object-cover"
                       />
-                      
+
                       {/* Overlay with name and position */}
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-5">
                         <h4 className="text-[#f8f0de] text-lg font-medium mb-1">
@@ -158,24 +137,24 @@ export const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-            <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="flex justify-between items-center px-4"
-            >
+        >
           {/* Social Handle */}
-                      <span className="text-[#f8f0de] text-sm">
-                @langaracpsc
-              </span>
+          <span className="text-[#f8f0de] text-sm">
+            @langaracpsc
+          </span>
 
-            {/* Social Links */}
+          {/* Social Links */}
           <div className="flex space-x-6">
-              {socialLinks.map((link, index) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
+            {socialLinks.map((link, index) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -184,24 +163,24 @@ export const Footer = () => {
                   delay: index * 0.02
                 }}
                 viewport={{ once: true }}
-                  whileHover={{ 
+                whileHover={{
                   scale: 1.3,
                   y: -4,
                   rotate: 8,
                   transition: { duration: 0.08, ease: "easeOut" }
-                  }}
+                }}
                 whileTap={{
                   scale: 0.85,
                   transition: { duration: 0.03 }
                 }}
                 className="text-[#f8f0de]/80 hover:text-[#f8f0de] transition-all duration-75 cursor-pointer"
-                  aria-label={link.label}
-                >
+                aria-label={link.label}
+              >
                 <link.icon className="w-8 h-8" strokeWidth={1.5} />
-                </motion.a>
-              ))}
+              </motion.a>
+            ))}
           </div>
-          </motion.div>
+        </motion.div>
       </div>
     </footer>
   )

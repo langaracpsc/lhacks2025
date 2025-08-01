@@ -4,8 +4,8 @@ import { ArrowUpRight } from 'lucide-react'
 
 export const LocationSection = () => {
   return (
-    <section className="py-20 bg-lh-dark">
-      <div className="container mx-auto px-4">
+    <section className="py-40 bg-lh-dark">
+      <div className="container mx-auto px-[6.25rem]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Location Info */}
           <motion.div
@@ -15,13 +15,16 @@ export const LocationSection = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="space-y-4">
-              <h2 className="text-[48px] font-bold text-[#f8f0de] leading-tight">
-                T Building Gallery<br />
-                Langara College
+            <div className="space-y-2">
+              <h2 className="text-[48px] font-bold text-[#f8f0de] leading-tight" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>
+                T GALLERY
               </h2>
-              
-              <div className="space-y-2">
+
+              <h3 className="text-[24px] font-bold text-[#f8f0de] leading-tight">
+                Langara College
+              </h3>
+
+              <div className="flex flex-col">
                 <p className="text-[#f8f0de] text-lg">
                   100 W 49th Ave,
                 </p>
@@ -48,7 +51,7 @@ export const LocationSection = () => {
                 e.currentTarget.style.color = '#f8f0de'
               }}
             >
-              View on Google Maps
+              Get Directions
               <ArrowUpRight className="ml-2 h-5 w-5" />
             </Button>
           </motion.div>
@@ -62,7 +65,7 @@ export const LocationSection = () => {
             className="relative"
           >
             <div className="aspect-video bg-gray-300 rounded-lg overflow-hidden">
-            
+
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.712683454102!2d-123.11018188820204!3d49.22497577471979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5486746f412563f7%3A0x36606d221509fdfe!2sLangara%20College!5e0!3m2!1spt-BR!2sca!4v1751946316553!5m2!1spt-BR!2sca"
                 width="100%"

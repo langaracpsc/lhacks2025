@@ -9,10 +9,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import type { CarouselApi } from '@/components/ui/carousel'
 
 export const ProjectsSection = () => {
   const [expandedProject, setExpandedProject] = useState<number | null>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -24,6 +27,18 @@ export const ProjectsSection = () => {
     
     return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
+
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCurrent(api.selectedScrollSnap())
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
 
   // Sample project data - you can expand this
   const projects = [
@@ -38,13 +53,13 @@ export const ProjectsSection = () => {
       ],
       buttonText: "View on Devpost",
       imageColor: "rgb(47, 122, 255)",
-      image: "/Podlyze.webp", 
+      image: "/Podlyze.webp",
       link: "https://devpost.com/software/podlyze"
     },
     {
       id: 2,
       title: "LANGARA HACKS 2024",
-      name: "HireHigher", 
+      name: "HireHigher",
       info: "An AI Analysis of your Interview Skills!",
       description: [
         "HireHigher reads your Resume, the job you want, your skills, and your Linkedin and generates questions tailored to the info you provides it. Our custom made AI-interviewer will simulate a real interview and take note of your answers. Afterwards, HireHigher will provide feedback regarding your speech.",
@@ -82,7 +97,9 @@ export const ProjectsSection = () => {
     },
   ]
 
-  const handleProjectClick = (projectId: number) => {
+  const handleProjectClick = (projectId: number, index: number) => {
+    if (current !== index) return
+    
     if (isMobile) {
       setExpandedProject(expandedProject === projectId ? null : projectId)
     }
@@ -91,7 +108,6 @@ export const ProjectsSection = () => {
   return (
     <section id="projects" className="py-20 bg-lh-dark relative overflow-hidden w-full">
       <div className="w-full flex flex-col items-center justify-center">
-        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,13 +115,14 @@ export const ProjectsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16 px-4"
         >
-          <h2 className="text-[80px] font-bold text-[#f8f0de] mb-4">PROJECTS</h2>
-          <p className="text-xl text-yellow-400">Projects from our LangaraHacks 2024</p>
+          <h2 className="text-[80px] font-bold text-[#f8f0de] mb-4 text-center" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>PROJECTS</h2>
+          <p className="text-xl text-yellow-400 text-center">Projects from our LangaraHacks 2024</p>
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative w-full">
+        <div className="relative w-full px-4 md:px-0">
           <Carousel
+            setApi={setApi}
             opts={{
               align: "center",
               loop: true,
@@ -113,139 +130,150 @@ export const ProjectsSection = () => {
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
-              {projects.map((project, index) => (
-                <CarouselItem key={project.id} className="pl-2 md:pl-4 md:basis-4/5">
-              <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className={`rounded-lg overflow-hidden group relative transition-all duration-500 ease-in-out ${
-                      isMobile ? 'cursor-pointer' : ''
-                    }`}
-                    style={{
-                      backgroundColor: 'rgb(220, 220, 218)',
-                      border: '1px solid rgba(168, 157, 157, 0.74)'
-                    }}
-                    onClick={() => handleProjectClick(project.id)}
-                        >
-                    {/* Hover Image Dropdown */}
-                    <div className={`absolute bottom-0 left-0 right-0 h-0 overflow-hidden z-10 p-4 transition-all duration-500 ease-in-out ${
-                      isMobile 
-                        ? (expandedProject === project.id ? 'h-96' : 'h-0')
-                        : 'group-hover:h-96'
-                    }`}>
-                      <img 
-                          src={project.image} 
-                          alt={project.name} 
-                          className="w-full h-full object-contain rounded-lg" 
+              {projects.map((project, index) => {
+                const isCenter = current === index
+                
+                return (
+                  <CarouselItem key={project.id} className="pl-2 md:pl-4 md:basis-4/5 basis-[85%]">
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
+                      className={`rounded-lg overflow-hidden transition-all duration-500 ease-in-out ${
+                        isCenter 
+                          ? `group relative ${isMobile ? 'cursor-pointer' : ''}` 
+                          : 'opacity-60 cursor-default'
+                      }`}
+                      style={{
+                        backgroundColor: 'rgb(220, 220, 218)',
+                        border: '1px solid rgba(168, 157, 157, 0.74)'
+                      }}
+                      onClick={() => handleProjectClick(project.id, index)}
+                    >
+                      {/* Hover Image Dropdown - Only active for center card */}
+                      <div className={`absolute bottom-0 left-0 right-0 h-0 overflow-hidden z-10 p-4 transition-all duration-500 ease-in-out ${
+                        !isCenter ? '' : 
+                        isMobile
+                          ? (expandedProject === project.id ? 'h-96' : 'h-0')
+                          : 'group-hover:h-96'
+                      }`}>
+                        <img
+                          src={project.image}
+                          alt={project.name}
+                          className="w-full h-full object-contain rounded-lg"
                         />
-                    </div>
-                    
-                    <div className={`grid grid-cols-1 min-h-[600px] relative z-20 transition-all duration-500 ease-in-out ${
-                      isMobile 
-                        ? (expandedProject === project.id ? 'pb-96' : 'pb-0')
-                        : 'group-hover:pb-96'
-                    }`}>
-                      {/* Top Content */}
-                      <div className="p-12 flex flex-col justify-center">
-                        {/* Title */}
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                          className="text-[48px] font-bold mb-6 leading-tight"
-                          style={{
-                            color: 'rgb(111, 8, 15)'
-                          }}
-              >
-                          {project.title}
-              </motion.h3>
-              
-                        {/* Name Placeholder */}
-                        <motion.h4
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.1 }}
-                          viewport={{ once: true }}
-                          className="text-2xl font-semibold mb-4"
-                          style={{
-                            color: 'rgb(20, 20, 20)'
-                          }}
-                        >
-                          {project.name}
-                        </motion.h4>
+                      </div>
 
-                        {/* Information Text */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                          className="text-sm mb-6"
-                          style={{
-                            color: 'rgb(20, 20, 20)'
-                          }}
-              >
-                          {project.info}
-              </motion.p>
-
-                        {/* Description Text */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.3 }}
-                          viewport={{ once: true }}
-                          className="space-y-4 mb-8"
-                        >
-                          {project.description.map((paragraph, idx) => (
-                            <p key={idx} className="text-base leading-relaxed" style={{ color: 'rgb(20, 20, 20)' }}>
-                              {paragraph}
-                            </p>
-                          ))}
-                        </motion.div>
-
-                        {/* Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                >
-                  <Button 
-                   onClick={(e) => {
-                     e.stopPropagation()
-                     window.open(project.link, '_blank')
-                   }}
-                            className="rounded-[40px] px-6 py-3 text-base transition-all"
+                      <div className={`grid grid-cols-1 min-h-[400px] md:min-h-[600px] relative z-20 transition-all duration-500 ease-in-out ${
+                        !isCenter ? '' :
+                        isMobile
+                          ? (expandedProject === project.id ? 'pb-96' : 'pb-0')
+                          : 'group-hover:pb-96'
+                      }`}>
+                        {/* Top Content */}
+                        <div className="p-6 md:p-12 flex flex-col justify-center">
+                          {/* Title */}
+                          <motion.h3
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="text-[32px] md:text-[48px] font-bold mb-6 leading-tight text-center"
                             style={{
-                              backgroundColor: 'transparent',
-                              border: '1px solid rgb(111, 8, 14)',
-                              color: 'rgb(111, 8, 14)'
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.backgroundColor = 'rgb(111, 8, 14)'
-                              e.currentTarget.style.color = '#f8f0de'
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.backgroundColor = 'transparent'
-                              e.currentTarget.style.color = 'rgb(111, 8, 14)'
+                              color: 'rgb(111, 8, 15)'
                             }}
                           >
-                            {project.buttonText}
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </motion.div>
+                            {project.title}
+                          </motion.h3>
+
+                          {/* Name Placeholder */}
+                          <motion.h4
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            viewport={{ once: true }}
+                            className="text-2xl font-semibold mb-4"
+                            style={{
+                              color: 'rgb(20, 20, 20)'
+                            }}
+                          >
+                            {project.name}
+                          </motion.h4>
+
+                          {/* Information Text */}
+                          <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            viewport={{ once: true }}
+                            className="text-sm mb-6"
+                            style={{
+                              color: 'rgb(20, 20, 20)'
+                            }}
+                          >
+                            {project.info}
+                          </motion.p>
+
+                          {/* Description Text */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                            viewport={{ once: true }}
+                            className="space-y-4 mb-8"
+                          >
+                            {project.description.map((paragraph, idx) => (
+                              <p key={idx} className="text-base leading-relaxed" style={{ color: 'rgb(20, 20, 20)' }}>
+                                {paragraph}
+                              </p>
+                            ))}
+                          </motion.div>
+
+                          {/* Button - Only interactive for center card */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            viewport={{ once: true }}
+                          >
+                            <Button
+                              onClick={(e) => {
+                                if (!isCenter) return
+                                e.stopPropagation()
+                                window.open(project.link, '_blank')
+                              }}
+                              className={`rounded-[40px] px-6 py-3 text-base transition-all ${
+                                !isCenter ? 'pointer-events-none opacity-50' : ''
+                              }`}
+                              style={{
+                                backgroundColor: 'transparent',
+                                border: '1px solid rgb(111, 8, 14)',
+                                color: 'rgb(111, 8, 14)'
+                              }}
+                              onMouseEnter={(e) => {
+                                if (!isCenter) return
+                                e.currentTarget.style.backgroundColor = 'rgb(111, 8, 14)'
+                                e.currentTarget.style.color = '#f8f0de'
+                              }}
+                              onMouseLeave={(e) => {
+                                if (!isCenter) return
+                                e.currentTarget.style.backgroundColor = 'transparent'
+                                e.currentTarget.style.color = 'rgb(111, 8, 14)'
+                              }}
+                            >
+                              {project.buttonText}
+                              <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                          </motion.div>
+                        </div>
                       </div>
-                    </div>
-              </motion.div>
-                </CarouselItem>
-              ))}
+                    </motion.div>
+                  </CarouselItem>
+                )
+              })}
             </CarouselContent>
-            
-            {/* Custom Navigation Buttons */}
-            <CarouselPrevious 
+            <CarouselPrevious
               className="w-12 h-12 left-4 border-0 cursor-pointer fixed-nav-button hidden lg:flex"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',
@@ -269,7 +297,7 @@ export const ProjectsSection = () => {
                 <polyline points="15,18 9,12 15,6"></polyline>
               </svg>
             </CarouselPrevious>
-            <CarouselNext 
+            <CarouselNext
               className="w-12 h-12 right-4 border-0 cursor-pointer fixed-nav-button hidden lg:flex"
               style={{
                 backgroundColor: 'rgb(111, 8, 14)',

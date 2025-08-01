@@ -50,40 +50,84 @@ const MainContent = () => {
   const [mobileImageIndex, setMobileImageIndex] = useState(0)
   
   // Animation states for fade effects
-  const [leftFade, setLeftFade] = useState(true)
-  const [middleFade, setMiddleFade] = useState(true)
-  const [rightFade, setRightFade] = useState(true)
-  const [mobileFade, setMobileFade] = useState(true)
-  
-
+  const [leftFade, setLeftFade] = useState(false)
+  const [middleFade, setMiddleFade] = useState(false)
+  const [rightFade, setRightFade] = useState(false)
+  const [mobileFade, setMobileFade] = useState(false)
 
   // Function to get random index for each image array
   const getRandomIndex = (arrayLength: number) => {
     return Math.floor(Math.random() * arrayLength)
   }
 
-  // Initialize random indices on component mount
+  // Initialize random indices and start animations
   useEffect(() => {
     setLeftImageIndex(getRandomIndex(leftRandomImages.length))
     setMiddleImageIndex(getRandomIndex(middleRandomImages.length))
     setRightImageIndex(getRandomIndex(rightRandomImages.length))
     setMobileImageIndex(getRandomIndex(mobileRandomImages.length))
     
-    // Initialize fade states
-    setLeftFade(false)
-    setMiddleFade(false)
-    setRightFade(false)
-    setMobileFade(false)
-    
-    // Trigger fade in after a short delay
+    // Fade in all images initially
     setTimeout(() => {
       setLeftFade(true)
       setMiddleFade(true)
       setRightFade(true)
       setMobileFade(true)
-    }, 100)
+    }, 200)
   }, [])
 
+  // Smooth transition function
+  const transitionImage = (
+    setFadeState: (value: boolean) => void,
+    setImageIndex: (value: (prev: number) => number) => void,
+    arrayLength: number
+  ) => {
+    // Fade out
+    setFadeState(false)
+    
+    // Change image after fade out completes
+    setTimeout(() => {
+      setImageIndex((prev: number) => {
+        const next = prev + 1
+        return next >= arrayLength ? 0 : next
+      })
+      
+      // Fade in new image
+      setTimeout(() => {
+        setFadeState(true)
+      }, 200)
+    }, 1800) // Wait for fade out to complete (matches duration 1.8s)
+  }
+
+  // Set up intervals for each image with staggered timing
+  useEffect(() => {
+    // Left image changes every 12 seconds
+    const leftInterval = setInterval(() => {
+      transitionImage(setLeftFade, setLeftImageIndex, leftRandomImages.length)
+    }, 12000)
+
+    // Middle image changes every 14 seconds (slightly offset)
+    const middleInterval = setInterval(() => {
+      transitionImage(setMiddleFade, setMiddleImageIndex, middleRandomImages.length)
+    }, 14000)
+
+    // Right image changes every 16 seconds
+    const rightInterval = setInterval(() => {
+      transitionImage(setRightFade, setRightImageIndex, rightRandomImages.length)
+    }, 16000)
+
+    // Mobile image changes every 10 seconds
+    const mobileInterval = setInterval(() => {
+      transitionImage(setMobileFade, setMobileImageIndex, mobileRandomImages.length)
+    }, 10000)
+
+    return () => {
+      clearInterval(leftInterval)
+      clearInterval(middleInterval)
+      clearInterval(rightInterval)
+      clearInterval(mobileInterval)
+    }
+  }, [])
 
   return (
     <div className="w-full pt-30  gap-16 px-4 relative  ">
@@ -99,29 +143,19 @@ const MainContent = () => {
         <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 top-[10%] w-[80%] h-[60%] rounded-[13px] overflow-hidden"
           style={{ backgroundColor: 'rgb(46, 46, 46)' }}
         >
-          { mobileRandomImages[mobileImageIndex] && (
-            <img 
-              src={mobileRandomImages[mobileImageIndex]} 
-              alt="Random mobile image" 
-              className={`w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
-                mobileFade ? 'opacity-100' : 'opacity-0'
-              }`}
-              loading="lazy"
-              onLoad={() => {
-                setMobileFade(true)
-                setTimeout(() => {
-                  setMobileFade(false)
-                  setTimeout(() => {
-                    setMobileImageIndex((prev: number) => {
-                      const next = prev + 1;
-                      return next >= mobileRandomImages.length ? 0 : next
-                    })
-                    setMobileFade(true)
-                  }, 400) // Longer background visibility for slower transitions
-                }, 4000)
-              }}
-            />
-          )}
+          <motion.img 
+            key={`mobile-${mobileImageIndex}`}
+            src={mobileRandomImages[mobileImageIndex]} 
+            alt="Random mobile image" 
+            className="w-full h-full object-cover"
+            loading="lazy"
+            initial={{ opacity: 0, filter: 'blur(10px) grayscale(80%)' }}
+            animate={{ 
+              opacity: mobileFade ? 1 : 0, 
+              filter: mobileFade ? 'blur(0px) grayscale(70%)' : 'blur(10px) grayscale(80%)' 
+            }}
+            transition={{ duration: 1.8, ease: 'easeInOut' }}
+          />
         </div>
 
         {/* Desktop Images */}
@@ -130,62 +164,42 @@ const MainContent = () => {
           className="hidden md:block absolute left-[7%] top-[25%] w-[24%] h-[63%] rounded-[13px] overflow-hidden"
           style={{ backgroundColor: 'rgb(46, 46, 46)' }}
         >
-          { leftRandomImages[leftImageIndex] && (
-            <img 
-              src={leftRandomImages[leftImageIndex]} 
-              alt="Random image 1" 
-              className={`w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
-                leftFade ? 'opacity-100' : 'opacity-0'
-              }`}
-              loading="lazy"
-              onLoad={() => {
-                setLeftFade(true)
-                setTimeout(() => {
-                  setLeftFade(false)
-                  setTimeout(() => {
-                    setLeftImageIndex((prev: number) => {
-                      const next = prev + 1;
-                      return next >= leftRandomImages.length ? 0 : next
-                    })
-                    setLeftFade(true)
-                  }, 400) // Longer background visibility for slower transitions
-                }, 3000)
-              }}
-            />
-          )}
+          <motion.img 
+            key={`left-${leftImageIndex}`}
+            src={leftRandomImages[leftImageIndex]} 
+            alt="Random image 1" 
+            className="w-full h-full object-cover"
+            loading="lazy"
+            initial={{ opacity: 0, filter: 'blur(10px) grayscale(70%)' }}
+            animate={{ 
+              opacity: leftFade ? 1 : 0, 
+              filter: leftFade ? 'blur(0px) grayscale(70%)' : 'blur(10px) grayscale(70%)' 
+            }}
+            transition={{ duration: 1.8, ease: 'easeInOut' }}
+          />
         </div>
         
-                {/* Center image - Rectangle 13 */}
+        {/* Center image - Rectangle 13 */}
         <div 
           className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-[-5%] w-[32%] h-[90%] rounded-[13px] overflow-hidden"
           style={{ backgroundColor: 'rgb(46, 46, 46)' }}
         >
-          { middleRandomImages[middleImageIndex] && (
-            <img 
-              src={middleRandomImages[middleImageIndex]} 
-              alt="Random image 2" 
-              className={`w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
-                middleFade ? 'opacity-100' : 'opacity-0'
-              }`}
-              loading="lazy"
-              onLoad={() => {
-                setMiddleFade(true)
-                setTimeout(() => {
-                  setMiddleFade(false)
-                  setTimeout(() => {
-                    setMiddleImageIndex((prev: number) => {
-                      const next = prev + 1
-                      return next >= middleRandomImages.length ? 0 : next
-                    })
-                    setMiddleFade(true)
-                  }, 400) // Longer background visibility for slower transitions
-                }, 4000)
-              }}
-            />
-          )}
+          <motion.img 
+            key={`middle-${middleImageIndex}`}
+            src={middleRandomImages[middleImageIndex]} 
+            alt="Random image 2" 
+            className="w-full h-full object-cover"
+            loading="lazy"
+            initial={{ opacity: 0, filter: 'blur(10px) grayscale(70%)' }}
+            animate={{ 
+              opacity: middleFade ? 1 : 0, 
+              filter: middleFade ? 'blur(0px) grayscale(70%)' : 'blur(10px) grayscale(70%)' 
+            }}
+            transition={{ duration: 1.8, ease: 'easeInOut' }}
+          />
         </div>
         
-                {/* Right image - Rectangle 14 with blue border */}
+        {/* Right image - Rectangle 14 with blue border */}
         <div 
           className="hidden md:block absolute right-[7%] top-[10%] w-[24%] h-[88%] rounded-[13px] overflow-hidden"
           style={{ 
@@ -193,29 +207,19 @@ const MainContent = () => {
             boxShadow: '0px 4px 22.7px rgba(0, 0, 0, 0.25)'
           }}
         >
-          { rightRandomImages[rightImageIndex] && (
-            <img 
-              src={rightRandomImages[rightImageIndex]} 
-              alt="Random image 3" 
-              className={`w-full h-full object-cover transition-opacity duration-800 ease-in-out ${
-                rightFade ? 'opacity-100' : 'opacity-0'
-              }`}
-              loading="lazy"
-              onLoad={() => {
-                setRightFade(true)
-                setTimeout(() => {
-                  setRightFade(false)
-                  setTimeout(() => {
-                    setRightImageIndex((prev: number) => {
-                      const next = prev + 1;
-                      return next >= rightRandomImages.length ? 0 : next
-                    })
-                    setRightFade(true)
-                  }, 400) // Longer background visibility for slower transitions
-                }, 5000)
-              }}
-            />
-          )}
+          <motion.img 
+            key={`right-${rightImageIndex}`}
+            src={rightRandomImages[rightImageIndex]} 
+            alt="Random image 3" 
+            className="w-full h-full object-cover"
+            loading="lazy"
+            initial={{ opacity: 0, filter: 'blur(10px) grayscale(70%)' }}
+            animate={{ 
+              opacity: rightFade ? 1 : 0, 
+              filter: rightFade ? 'blur(0px) grayscale(70%)' : 'blur(10px) grayscale(70%)' 
+            }}
+            transition={{ duration: 1.8, ease: 'easeInOut' }}
+          />
         </div>
       </div>
 
@@ -224,7 +228,8 @@ const MainContent = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
-        className="tracking-tighter absolute bottom-20 text-[80px] font-sm-bold  text-[#f8f0de] mb-6 leading-tight text-center relative z-20 "
+        className="tracking-tighter absolute bottom-20 text-[80px] font-sm-bold text-[#f8f0de] mb-6 leading-tight text-center relative z-20"
+        style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}
       >
         LANGARA HACKS
       </motion.h1>
@@ -234,12 +239,12 @@ const MainContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
-        className=" text-[#f8f0de]/80 text-center relative z-20  absolute text-xl bottom-20 max-w-3xl mx-auto text-center leading-relaxed"
+        className="text-[#f8f0de]/80 text-center relative z-20 absolute text-xl bottom-20 max-w-3xl mx-auto leading-relaxed"
       >
-        LangaraHacks is the annual hackathon hosted by the Langara Computer Science Club dedicated to empowering students through innovation, creativity, and hands-on experience. Over one exciting weekend, participants team up to build real-world tech solutions, from web apps and games to tools that solve everyday problems.
+        <span className="font-semibold text-[#f8f0de]">LangaraHacks</span> is the <em>annual hackathon</em> hosted by the Langara Computer Science Club dedicated to empowering students through <span className="font-medium text-[#f8f0de]/90">innovation</span>, <span className="font-medium text-[#f8f0de]/90">creativity</span>, and <span className="font-medium text-[#f8f0de]/90">hands-on experience</span>. Over <em>one exciting weekend</em>, participants team up to build <span className="font-medium">real-world tech solutions</span>, from web apps and games to tools that solve everyday problems.
         <br />
         <br />
-More than just a competition, LangaraHacks is a launchpad for learning, growth, and connection. It’s a beginner-friendly, high-energy environment where you can explore new technologies, attend hands-on workshops, get guidance from industry mentors, and collaborate with a vibrant community of creators.
+        More than just a competition, <span className="font-semibold text-[#f8f0de]">LangaraHacks</span> is a <em>launchpad</em> for <span className="font-medium text-[#f8f0de]/90">learning</span>, <span className="font-medium text-[#f8f0de]/90">growth</span>, and <span className="font-medium text-[#f8f0de]/90">connection</span>. It's a <span className="font-medium">beginner-friendly</span>, <span className="font-medium">high-energy environment</span> where you can explore new technologies, attend <em>hands-on workshops</em>, get guidance from <em>industry mentors</em>, and collaborate with a vibrant community of creators.
       </motion.p>
 
       {/* Bottom-right dotted pattern */}

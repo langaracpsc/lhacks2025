@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 
@@ -18,7 +18,7 @@ const Applicants = () => {
 
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center min-h-screen px-4">
-        <h1 className="text-6xl font-bold mb-12 text-center">Applicants Portal</h1>
+        <h1 className="text-6xl font-bold mb-12 text-center" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>Applicants Portal</h1>
         <p className="text-xl mb-16 text-center opacity-80 max-w-2xl">
           Welcome to the LangaraHacks 2025 Applicants Portal. Choose your role below.
         </p>
@@ -44,7 +44,7 @@ const Applicants = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                 </svg>
               </div>
-              <h2 className="text-3xl font-bold mb-4">Apply as Participant</h2>
+              <h2 className="text-3xl font-bold mb-4" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>Apply as Participant</h2>
               <p className="text-center opacity-80 leading-relaxed">
                 Join us as a participant and build amazing projects with fellow hackers. 
                 Showcase your skills and creativity in this exciting hackathon experience.
@@ -71,7 +71,7 @@ const Applicants = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h2 className="text-3xl font-bold mb-4">Apply as Mentor</h2>
+              <h2 className="text-3xl font-bold mb-4" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>Apply as Mentor</h2>
               <p className="text-center opacity-80 leading-relaxed">
                 Share your expertise and guide participants through their hackathon journey. 
                 Help shape the next generation of innovators and problem solvers.
