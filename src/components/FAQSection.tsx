@@ -45,7 +45,7 @@ export const FAQSection = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-[70px] text-[#f8f0de] mb-12 leading-tight" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] text-[#f8f0de] mb-12 leading-tight" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>
                 FREQUENTLY<br />
                 ASKED<br />
                 QUESTIONS

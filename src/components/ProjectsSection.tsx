@@ -115,8 +115,8 @@ export const ProjectsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16 px-4"
         >
-          <h2 className="text-[80px] font-bold text-[#f8f0de] mb-4 text-center" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>PROJECTS</h2>
-          <p className="text-xl text-yellow-400 text-center">Projects from our LangaraHacks 2024</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[80px] font-bold text-[#f8f0de] mb-4 text-center" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>PROJECTS</h2>
+          <p className="text-lg sm:text-xl text-yellow-400 text-center">Projects from our LangaraHacks 2024</p>
         </motion.div>
 
         {/* Carousel */}

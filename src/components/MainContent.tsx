@@ -130,15 +130,15 @@ const MainContent = () => {
   }, [])
 
   return (
-    <div className="w-full pt-30  gap-16 px-4 relative  ">
+    <div className="w-full pt-10 sm:pt-20 md:pt-30 gap-16 px-4 relative">
       {/* Top dotted pattern */}
-      <div className="absolute sm:block hidden top-0 left-0 w-[390px] h-[60px]" style={{
+      <div className="absolute sm:block hidden top-0 left-0 w-[200px] sm:w-[300px] md:w-[390px] h-[40px] sm:h-[50px] md:h-[60px]" style={{
         backgroundImage: `radial-gradient(circle, rgb(248, 240, 222) 1px, transparent 1px)`,
-        backgroundSize: '24px 24px'
+        backgroundSize: '16px 16px sm:20px 20px md:24px 24px'
       }} />
 
       {/* Image placeholders layout */}
-      <div className="relative w-full h-[600px] flex items-center justify-center">
+      <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] flex items-center justify-center">
         {/* Mobile Single Image */}
         <div className="md:hidden absolute left-1/2 transform -translate-x-1/2 top-[10%] w-[80%] h-[60%] rounded-[13px] overflow-hidden"
           style={{ backgroundColor: 'rgb(46, 46, 46)' }}
@@ -228,7 +228,7 @@ const MainContent = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
-        className="tracking-tighter absolute bottom-20 text-[80px] font-sm-bold text-[#f8f0de] mb-6 leading-tight text-center relative z-20"
+        className="tracking-tighter absolute bottom-10 sm:bottom-16 md:bottom-20 text-3xl sm:text-5xl md:text-6xl lg:text-[80px] font-sm-bold text-[#f8f0de] mb-6 leading-tight text-center relative z-20 px-4"
         style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}
       >
         LANGARA HACKS
@@ -239,18 +239,18 @@ const MainContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
-        className="text-[#f8f0de]/80 text-center relative z-20 absolute text-xl bottom-20 max-w-3xl mx-auto leading-relaxed"
+        className="text-[#f8f0de]/80 text-center relative z-20 absolute text-sm sm:text-base md:text-lg lg:text-xl bottom-10 sm:bottom-16 md:bottom-20 max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4"
       >
         <span className="font-semibold text-[#f8f0de]">LangaraHacks</span> is the <em>annual hackathon</em> hosted by the Langara Computer Science Club dedicated to empowering students through <span className="font-medium text-[#f8f0de]/90">innovation</span>, <span className="font-medium text-[#f8f0de]/90">creativity</span>, and <span className="font-medium text-[#f8f0de]/90">hands-on experience</span>. Over <em>one exciting weekend</em>, participants team up to build <span className="font-medium">real-world tech solutions</span>, from web apps and games to tools that solve everyday problems.
         <br />
-        <br />
+        <br className="hidden sm:block" />
         More than just a competition, <span className="font-semibold text-[#f8f0de]">LangaraHacks</span> is a <em>launchpad</em> for <span className="font-medium text-[#f8f0de]/90">learning</span>, <span className="font-medium text-[#f8f0de]/90">growth</span>, and <span className="font-medium text-[#f8f0de]/90">connection</span>. It's a <span className="font-medium">beginner-friendly</span>, <span className="font-medium">high-energy environment</span> where you can explore new technologies, attend <em>hands-on workshops</em>, get guidance from <em>industry mentors</em>, and collaborate with a vibrant community of creators.
       </motion.p>
 
       {/* Bottom-right dotted pattern */}
-      <div className="absolute top-[1400px] sm:top-[1300px] md:top-[1200px] lg:top-[1100px] bottom-0 right-0 w-[390px] h-[60px] hidden sm:block" style={{
+      <div className="absolute top-[800px] sm:top-[1000px] md:top-[1200px] lg:top-[1100px] bottom-0 right-0 w-[200px] sm:w-[300px] md:w-[390px] h-[40px] sm:h-[50px] md:h-[60px] hidden sm:block" style={{
         backgroundImage: `radial-gradient(circle, rgb(248, 240, 222) 1px, transparent 1px)`,
-        backgroundSize: '24px 24px'
+        backgroundSize: '16px 16px sm:20px 20px md:24px 24px'
       }} />
     </div>
   )

@@ -18,9 +18,9 @@ export const Navigation = () => {
       className="fixed top-0 left-0 right-0 z-50 flex md:justify-start max-md:justify-between w-full px-4"
     >
     <div className={` flex md:justify-start max-md:justify-between w-full px-4`}>
-          <div className="flex max-md:justify-end md:justify-start pl-10 pt-10 items-center h-20 w-full">
+          <div className="flex max-md:justify-end md:justify-start pl-4 sm:pl-6 md:pl-10 pt-6 sm:pt-8 md:pt-10 items-center h-16 sm:h-18 md:h-20 w-full">
             {/* Desktop Navigation - Left aligned */}
-            <div className="hidden md-max:pl-[90%] md:flex items-center space-x-12">
+            <div className="hidden md-max:pl-[90%] md:flex items-center space-x-8 lg:space-x-12">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.label}
@@ -35,7 +35,7 @@ export const Navigation = () => {
                     textShadow: '0px 0px 8px rgba(248, 240, 222, 0.5)'
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-[18px] font-bold transition-all duration-300 relative cursor-pointer"
+                  className="text-base lg:text-[18px] font-bold transition-all duration-300 relative cursor-pointer"
                   style={{
                     color: 'rgba(245, 245, 245, 0.59)',
                     fontFamily: 'system-ui, -apple-system, sans-serif'
@@ -62,7 +62,7 @@ export const Navigation = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-12 h-12 flex items-center  justify-center transition-colors relative rounded-md"
+              className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center transition-colors relative rounded-md"
               style={{
                 backgroundColor: 'transparent'
               }}
@@ -110,7 +110,7 @@ export const Navigation = () => {
           transition={{ duration: 0.3 }}
           className="md:hidden overflow-hidden fixed inset-0 z-40"
         >
-          <div className="py-4 space-y-4 pt-32 px-8">
+          <div className="py-4 space-y-6 pt-24 sm:pt-28 md:pt-32 px-6 sm:px-8">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.label}
@@ -129,7 +129,7 @@ export const Navigation = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsMenuOpen(false)}
-                className="block text-[24px] font-bold py-2 transition-all duration-300 cursor-pointer"
+                className="block text-xl sm:text-2xl md:text-[24px] font-bold py-3 transition-all duration-300 cursor-pointer"
                 style={{
                   color: 'rgba(245, 245, 245, 0.59)'
                 }}

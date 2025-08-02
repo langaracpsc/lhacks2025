@@ -4,38 +4,38 @@ import { ArrowUpRight } from 'lucide-react'
 
 export const LocationSection = () => {
   return (
-    <section className="py-40 bg-lh-dark">
-      <div className="container mx-auto px-[6.25rem]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section className="py-20 sm:py-32 md:py-40 bg-lh-dark">
+      <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-[6.25rem]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
           {/* Left side - Location Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
             <div className="space-y-2">
-              <h2 className="text-[48px] font-bold text-[#f8f0de] leading-tight" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-bold text-[#f8f0de] leading-tight" style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}>
                 T GALLERY
               </h2>
 
-              <h3 className="text-[24px] font-bold text-[#f8f0de] leading-tight">
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-[24px] font-bold text-[#f8f0de] leading-tight">
                 Langara College
               </h3>
 
               <div className="flex flex-col">
-                <p className="text-[#f8f0de] text-lg">
+                <p className="text-[#f8f0de] text-base sm:text-lg">
                   100 W 49th Ave,
                 </p>
-                <p className="text-[#f8f0de] text-lg">
+                <p className="text-[#f8f0de] text-base sm:text-lg">
                   Vancouver, BC V5X 3B3
                 </p>
               </div>
             </div>
 
             <Button
-              className="rounded-[40px] px-8 py-3 text-lg transition-all"
+              className="rounded-[40px] px-6 sm:px-8 py-3 text-base sm:text-lg transition-all"
               style={{
                 backgroundColor: 'transparent',
                 border: '1px solid rgb(191, 18, 30)',
@@ -50,9 +50,12 @@ export const LocationSection = () => {
                 e.currentTarget.style.backgroundColor = 'transparent'
                 e.currentTarget.style.color = '#f8f0de'
               }}
+              onClick={() => {
+                window.open('https://www.google.com/maps/place/Langara+College/@49.2249758,-123.1101819,17z/data=!3m1!4b1!4m6!3m5!1s0x5486746f412563f7:0x36606d221509fdfe!8m2!3d49.2249758!4d-123.1079932!16s%2Fg%2F11c48zqmgb?entry=ttu&g_ep=EgoyMDI1MDIwMi4wIKXMDSoASAFQAw%3D%3D', '_blank')
+              }}
             >
               Get Directions
-              <ArrowUpRight className="ml-2 h-5 w-5" />
+              <ArrowUpRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
           </motion.div>
 

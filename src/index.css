@@ -10,6 +10,7 @@
 /* Smooth scrolling for navigation */
 html {
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 :root {
@@ -70,10 +71,12 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
   min-height: 100vh;
   background-color: #141414; /* Ensure dark background */
   color: #F5F5F5; /* Light text */
+  overflow-x: hidden;
+  width: 100%;
+  
 }
 
 @theme inline {

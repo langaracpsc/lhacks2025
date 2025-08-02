@@ -79,7 +79,7 @@ export const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-[60px] font-bold text-[#f8f0de] text-center mb-16 leading-tight px-4"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-[60px] font-bold text-[#f8f0de] text-center mb-12 sm:mb-14 md:mb-16 leading-tight px-4"
           style={{ textShadow: '0 3px 5px rgba(248, 240, 222, 0.3)' }}
         >
           THE TEAM
@@ -145,12 +145,12 @@ export const Footer = () => {
           className="flex justify-between items-center px-4"
         >
           {/* Social Handle */}
-          <span className="text-[#f8f0de] text-sm">
+          <span className="text-[#f8f0de] text-xs sm:text-sm">
             @langaracpsc
           </span>
 
           {/* Social Links */}
-          <div className="flex space-x-6">
+          <div className="flex space-x-4 sm:space-x-6">
             {socialLinks.map((link, index) => (
               <motion.a
                 key={link.label}

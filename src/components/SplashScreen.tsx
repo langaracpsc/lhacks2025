@@ -40,25 +40,14 @@ export const SplashScreen = ({ onComplete }: SplashScreenProps) => {
         className="flex flex-col items-center"
       >
         {/* Logo Placeholder - Replace with actual LogoSplash.png */}
-        <div className="w-32 h-32 mb-8 flex items-center justify-center">
-          
-        
-          
-         
+        <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mb-6 sm:mb-8 flex items-center justify-center">
           <img 
             src="/LogoSplash.png" 
             alt="Langara Hacks Logo" 
             className="w-full h-full object-contain"
           />
-         
         </div>
-
-       
-
-       
       </motion.div>
-
-
     </motion.div>
   )
 } 
