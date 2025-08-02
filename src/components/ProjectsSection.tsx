@@ -165,14 +165,14 @@ export const ProjectsSection = () => {
                         />
                       </div>
 
-                      <div className={`grid grid-cols-1 min-h-[400px] md:min-h-[600px] relative z-20 transition-all duration-500 ease-in-out ${
+                      <div className={`grid grid-cols-1 h-auto md:min-h-[600px] relative z-20 transition-all duration-500 ease-in-out ${
                         !isCenter ? '' :
                         isMobile
                           ? (expandedProject === project.id ? 'pb-96' : 'pb-0')
                           : 'group-hover:pb-96'
                       }`}>
                         {/* Top Content */}
-                        <div className="p-6 md:p-12 flex flex-col justify-center">
+                        <div className="p-6 md:p-12 flex flex-col justify-center h-full">
                           {/* Title */}
                           <motion.h3
                             initial={{ opacity: 0, y: 20 }}
