@@ -69,7 +69,7 @@ export const Footer = () => {
     },
 
   ]
-
+ 
   return (
     <footer className="bg-lh-dark py-20">
       <div className="w-full">
