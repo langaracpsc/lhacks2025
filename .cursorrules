@@ -1,0 +1,99 @@
+# Cursor Rules for Langara Hacks 2025
+
+## Performance Optimization Guidelines
+
+### Code Splitting & Lazy Loading
+- **Always use React.lazy() for below-the-fold components** that aren't immediately visible
+- **Critical components** (Navigation, HeroSection, MainContent) should be imported directly
+- **Non-critical components** (AboutSection, ProjectsSection, FAQSection, Footer) should be lazy loaded
+- Wrap lazy components in `<Suspense>` with meaningful loading fallbacks
+- Use this pattern for lazy imports:
+  ```tsx
+  const ComponentName = lazy(() => import('./path/to/Component.tsx').then(m => ({ default: m.ComponentName })))
+  ```
+
+### Bundle Optimization
+- **Avoid barrel files** - import components directly with explicit file paths
+- **Use explicit file extensions** (.tsx, .ts) for faster module resolution
+- **Manual chunk splitting** should group related libraries:
+  - `vendor`: React and core libraries
+  - `ui`: UI component libraries  
+  - `motion`: Animation libraries
+  - `forms`: Form handling libraries
+  - `carousel`: Carousel/slider libraries
+  - `utils`: Utility libraries
+- **Target modern browsers** in build config for smaller bundles
+
+### Resource Loading
+- **Preload critical resources** in index.html:
+  - DNS prefetch external domains
+  - Preconnect to font providers
+  - Preload critical CSS and fonts
+- **Use LazyImage component** for all images to enable intersection observer loading
+- **Optimize images** - prefer WebP format, include proper alt text and sizes
+- **Font optimization** - preload critical font files (WOFF2 format)
+
+### Vite Configuration Best Practices
+- **Use esbuild for minification** (faster than Terser)
+- **Enable CSS code splitting** for better caching
+- **Configure server warmup** for frequently used files during development
+- **Set chunk size warning limit** to 500KB to catch bloated bundles
+- **Use bundle analyzer** (`npm run build:analyze`) to monitor bundle sizes
+
+### Import Patterns
+- **NO**: `import { Component1, Component2 } from './components'` (barrel file)
+- **YES**: `import { Component1 } from './components/Component1.tsx'` (direct import)
+- **NO**: `import Component from './Component'` (missing extension)
+- **YES**: `import Component from './Component.tsx'` (explicit extension)
+
+### Component Architecture
+- **Separate critical and non-critical components** in file organization
+- **Use Suspense boundaries** strategically - don't wrap every lazy component individually if they're in the same section
+- **Implement loading states** that match the design system
+- **Progressive enhancement** - ensure core functionality works even if JS fails to load
+
+### Image Optimization
+- **Always use LazyImage component** instead of regular `<img>` tags
+- **Include proper sizing** with `sizes` attribute for responsive images
+- **Use intersection observer** for lazy loading with 50px root margin
+- **Provide meaningful alt text** for accessibility
+- **Optimize image formats** - WebP for photos, SVG for icons/logos
+
+### Performance Monitoring
+- **Run bundle analysis** before major releases: `npm run build:analyze`
+- **Monitor bundle sizes** - main bundle should stay under 300KB
+- **Check chunk distribution** - no single chunk should exceed 100KB (except vendor)
+- **Test on slower connections** to verify lazy loading effectiveness
+
+### Development Workflow
+- **Use TypeScript strictly** - no `any` types, proper interface definitions
+- **Explicit exports** - export named exports when possible for better tree shaking
+- **Import optimization** - remove unused imports, group related imports
+- **Performance first** - consider loading impact of every new dependency
+
+### Asset Organization
+- **Public assets** should be optimized and compressed
+- **Static images** larger than 500KB should be reviewed for optimization
+- **Font files** should be subset and converted to WOFF2
+- **SVG icons** should be optimized and potentially inlined for critical icons
+
+### Build Optimization
+- **Production builds** should always be tested before deployment
+- **Source maps** disabled in production for smaller file sizes
+- **Modern browser targeting** to reduce polyfill overhead
+- **Gzip compression** should be enabled on the server
+
+### Code Quality
+- **Use semantic HTML** for better accessibility and SEO
+- **Implement proper error boundaries** around lazy-loaded content
+- **Consistent loading states** across the application
+- **Meaningful component names** that reflect their purpose and loading strategy
+
+## Quick Performance Checklist
+- [ ] New components below-the-fold are lazy loaded
+- [ ] Imports use explicit file extensions
+- [ ] No barrel file imports in critical paths
+- [ ] Images use LazyImage component
+- [ ] Bundle size under 300KB after adding features
+- [ ] Critical resources are preloaded in HTML
+- [ ] Loading states provide good user experience
